@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 
 
-const Donation = sequalize.define('Donation', {
+const Donation = sequelize.define('Donation', {
 
 });
 

@@ -17,12 +17,12 @@ sequelize
     process.exit(1);
   });
 
-// sequelize.sync({alter: true}) // {force: true} - drop and recreate tables
-//   .then(() => {
-//     console.log('Database is synchronized.');
-//   })
-//   .catch(error => {
-//     console.error('An error occurred during database synchronization: ', error);
-//   });
+sequelize.sync({force: true}) // {force: true} - drop and recreate tables // było alter
+  .then(() => {
+    console.log('Database is synchronized.');
+  })
+  .catch(error => {
+    console.error('An error occurred during database synchronization: ', error);
+  });
 
 module.exports = sequelize;

@@ -1,5 +1,7 @@
 const User = require('../models/userModel.js');
 
+
+// w sumie to nie wiem, czy to jest potrzebne, skoro mam authController'a
 const createUser = async (req, res) => {
     const { 
         name,

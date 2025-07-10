@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 
 
-const Volunteer = sequalize.define('Volunteer', {
+const Volunteer = sequelize.define('Volunteer', {
 
 });
 
