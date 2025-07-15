@@ -5,6 +5,8 @@ const User = require('../models/userModel');
 const registerUser = async (req, res) => {
     const { 
         name,
+        surname,
+        username,
         email,
         password,
         role = 'public'
@@ -13,7 +15,8 @@ const registerUser = async (req, res) => {
     // Check if user already exists
     const existingUser = await User.findOne({
         where: {
-            name: name,
+            email: email,
+            username: username,
         }
     });
 
@@ -26,6 +29,8 @@ const registerUser = async (req, res) => {
         
         const user = await User.create({
             name: name,
+            surname: surname,
+            username: username,
             email: email,
             password: hashedPassword,
             role: role
@@ -34,7 +39,7 @@ const registerUser = async (req, res) => {
         // automatic login after registration
         req.session.userId = user.id;
 
-        // tu sprawdzić, czy dobrze przekierowuje
+        // tu sprawdzić, czy dobrze przekierowuje - na razie nie przekierowuje
         const lastUrl = req.session.lastUrl || '/';
         delete req.session.lastUrl;
 
@@ -56,7 +61,7 @@ const loginUser = async (req, res) => {
         // Find user by name
         const user = await User.findOne({
             where: {
-                name: username
+                username: username
             }
         });
 

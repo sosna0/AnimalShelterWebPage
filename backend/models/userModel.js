@@ -12,6 +12,16 @@ const User = sequelize.define('User', {
     name:{
         type: DataTypes.STRING,
         allowNull: false,
+    },
+
+    surname:{
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+
+    username:{
+        type: DataTypes.STRING,
+        allowNull: false,
         unique: true,
     },
 
@@ -28,6 +38,7 @@ const User = sequelize.define('User', {
             type: DataTypes.STRING,
             allowNull: false
     },
+    
     role: {
         type: DataTypes.ENUM('public', 'staff', 'admin'),
         defaultValue: 'public'

@@ -5,6 +5,8 @@ const User = require('../models/userModel.js');
 const createUser = async (req, res) => {
     const { 
         name,
+        surname,
+        username,
         email,
         password,
         role = 'public'
@@ -13,6 +15,8 @@ const createUser = async (req, res) => {
     try {
         const user = await User.create({
             name: name,
+            surname: surname,
+            username: username,
             email: email,
             password: password,
             role: role
@@ -48,13 +52,18 @@ const getUserById = async (req, res) => {
     }
 };
 
-const getUserByName = async (req, res) => {
+const getUserByUsername = async (req, res) => {
     try {
-        const user = await User.findAll({
+        const user = await User.findByPk({
             where: {
-                name: req.params.username
+                username: req.params.username
             }
         });
+
+        if (!user) {
+            return res.status(404).send({ error: 'User not found' });
+        }
+
         res.status(200).send(user);
     } catch (error) {
         console.error(error);
@@ -66,5 +75,5 @@ module.exports = {
     createUser,
     getUsers,
     getUserById,
-    getUserByName
+    getUserByUsername
 };
