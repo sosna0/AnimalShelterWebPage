@@ -1,0 +1,1 @@
+const Adoption = require('../models/adoptionModel.js');
