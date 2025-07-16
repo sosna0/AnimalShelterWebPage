@@ -10,7 +10,7 @@ const createUser = async (req, res) => {
         email,
         password,
         role = 'public'
-     } = req.body;
+    } = req.body;
     
     try {
         const user = await User.create({
