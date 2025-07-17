@@ -59,7 +59,7 @@ const getDonationById = async (req, res) => {
 
 const getDonationsByUserId = async (req, res) => {
     try {
-        const donation = await Donation.findByPk({
+        const donation = await Donation.findAll({
             where: {
                 userId: req.params.userId
             }

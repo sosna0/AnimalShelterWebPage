@@ -1,7 +1,8 @@
 const User = require('../models/userModel.js');
 
+//TODO: update and delete?
 
-// w sumie to nie wiem, czy to jest potrzebne, skoro mam authController'a
+// w sumie to nie wiem, czy to jest potrzebne, skoro mam authController
 const createUser = async (req, res) => {
     const { 
         name,
