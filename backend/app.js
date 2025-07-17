@@ -10,6 +10,9 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
 var animalRouter = require('./routes/animal');
+var donationRouter = require('./routes/donation');
+var adoptionRouter = require('./routes/adoption');
+var volunteerRouter = require('./routes/volunteer');
 
 var app = express();
 
@@ -33,6 +36,9 @@ app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/animals', animalRouter);
+app.use('/api/donations', donationRouter);
+app.use('/api/adoptions', adoptionRouter);
+app.use('/api/volunteers', volunteerRouter);
 
 
 // catch 404 and forward to error handler

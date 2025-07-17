@@ -1,0 +1,123 @@
+const Donation = require('../models/donationModel.js');
+
+const createDonation = async (req, res) => {
+    const { 
+        userId,
+        amount,
+        donorNickname,
+        message,
+        paymentStatus = 'pending',
+        createdAt = new Date()
+    } = req.body;
+
+    try {
+        const donation = await Donation.create({
+            userId: userId,
+            amount: amount,
+            donorNickname: donorNickname,
+            message: message,
+            paymentStatus: paymentStatus,
+            createdAt: createdAt
+        });
+
+        res.status(201).send(donation);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: 'Failed to create donation' });
+    }
+};
+
+const getDonations = async (req, res) => {
+    try {
+        const donations = await Donation.findAll();
+
+        res.status(200).send(donations);
+
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).send({ error: 'Failed to fetch donations' });
+    }
+};
+
+const getDonationById = async (req, res) => {
+    try {
+        const donation = await Donation.findByPk(req.params.id);
+
+        if (!donation) {
+            return res.status(404).send({ error: 'Donation not found' });
+        }
+
+        res.status(200).send(donation);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: 'Failed to fetch donation by id' });
+    }
+};
+
+const getDonationsByUserId = async (req, res) => {
+    try {
+        const donation = await Donation.findByPk({
+            where: {
+                userId: req.params.userId
+            }
+        });
+
+        if (!donation) {
+            return res.status(404).send({ error: 'Donation not found' });
+        }
+
+        res.status(200).send(donation);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: 'Failed to fetch donation by userId' });
+    }
+};
+
+const updateDonation = async (req, res) => {
+    try {
+        const donation = await Donation.findByPk(req.params.id);
+
+        if (!donation) {
+            return res.status(404).send({ error: 'Donation not found' });
+        }
+
+        const updatedDonation = await donation.update(req.body);
+
+        res.status(200).send(updatedDonation);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: 'Failed to update donation' });
+    }
+}
+
+const deleteDonation = async (req, res) => {
+    try {
+        const donation = await Donation.findByPk(req.params.id);
+
+        if (!donation) {
+            return res.status(404).send({ error: 'Donation not found' });
+        }
+
+        await donation.destroy();
+
+        res.status(204).send();
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: 'Failed to delete donation' });
+    }
+};
+
+
+module.exports = {
+    createDonation,
+    getDonations,
+    getDonationById,
+    getDonationsByUserId,
+    updateDonation,
+    deleteDonation
+};
