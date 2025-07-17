@@ -114,7 +114,7 @@ const updateAnimal = async (req, res) => {
         console.error(error);
         res.status(500).send({ error: 'Failed to update animal' });
     }
-}
+};
 
 const deleteAnimal = async (req, res) => {
     try {
@@ -147,7 +147,7 @@ const getSpecies = async (req, res) => {
         console.error(error);
         res.status(500).send({ error: 'Failed to fetch species' });
     }
-}
+};
 
 module.exports = {
     createAnimal,

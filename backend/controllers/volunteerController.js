@@ -113,7 +113,7 @@ const updateVolunteer = async (req, res) => {
         console.error(error);
         res.status(500).send({ error: 'Failed to update volunteer' });
     }
-}
+};
 
 const deleteVolunteer = async (req, res) => {
     try {

@@ -87,9 +87,9 @@ const loginUser = async (req, res) => {
         console.error(error);
         res.status(500).send('Server error');
     }
-}
+};
 
 module.exports = {
     registerUser,
     loginUser
-}
+};
