@@ -17,8 +17,9 @@ sequelize
     process.exit(1);
   });
 
-// to jest po to, żeby wyrzucić stare dane z każdym nowym odpaleniem aplikacji
-sequelize.sync({force: true}) // {force: true} - drop and recreate tables // było alter
+
+// na koniec można to całkiem usunąć
+sequelize.sync({alter: true})
   .then(() => {
     console.log('Database is synchronized.');
   })
