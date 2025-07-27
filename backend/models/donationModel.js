@@ -51,15 +51,6 @@ const Donation = sequelize.define('Donation', {
         }
     },
 
-    createdAt:{
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: DataTypes.NOW,
-        validate: {
-            isDate: true
-        }
-    }
-
 });
 
 module.exports = Donation;
