@@ -51,7 +51,7 @@ const Header = () => {
 							<Link className="nav-link" to="/donate">Donate</Link>
 						</li>
 						<li className="nav-item">
-							<Link className="nav-link" to="/auth/login">Login</Link>
+							<Link className="nav-link" to="/login">Login</Link>
 						</li>
 					</ul>
 				</div>
