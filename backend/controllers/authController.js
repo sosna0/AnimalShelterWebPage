@@ -90,13 +90,31 @@ const loginUser = async (req, res) => {
 };
 
 // Probably it will be enough for correct logout
-const logoutUser = (req, res) => {
+const logoutUser = async (req, res) => {
     delete req.session.userId;
     res.status(200).send('Logout successful');
+}
+
+const getCurrentUser = async (req, res) => {
+    if (!req.session.userId) {
+        return res.status(401).send('Not logged in')
+    }
+
+    const user = await User.findByPk(req.session.userId, {
+        attributes: { exclude: ['password'] } // Exclude password from the response
+    });
+
+    if (!user) {
+        return res.status(404).send('User not found');
+    }
+
+    res.status(200).json(user);
+
 }
 
 module.exports = {
     registerUser,
     loginUser,
-    logoutUser
+    logoutUser,
+    getCurrentUser
 };
