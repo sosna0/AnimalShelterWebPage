@@ -89,7 +89,14 @@ const loginUser = async (req, res) => {
     }
 };
 
+// Probably it will be enough for correct logout
+const logoutUser = (req, res) => {
+    delete req.session.userId;
+    res.status(200).send('Logout successful');
+}
+
 module.exports = {
     registerUser,
-    loginUser
+    loginUser,
+    logoutUser
 };
