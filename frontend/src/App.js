@@ -4,6 +4,7 @@ import Footer from './components/common/Footer';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import { AuthProvider } from './hooks/use-auth';
+import Animals from './pages/Animals';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/animals" element={<Animals />} />
             </Routes>
           <Footer/>
       </Router>
