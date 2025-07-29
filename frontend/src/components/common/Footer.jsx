@@ -19,9 +19,9 @@ const Footer = () => {
                     </Col>
                     <Col md={4} className="text-center text-md-end">
                         <div className="d-flex justify-content-center justify-content-md-end gap-3">
-                            <a href="#" className="text-muted" aria-label="Facebook"><i className="bi bi-facebook"></i></a>
-                            <a href="#" className="text-muted" aria-label="Twitter"><i className="bi bi-twitter"></i></a>
-                            <a href="#" className="text-muted" aria-label="Instagram"><i className="bi bi-instagram"></i></a>
+                            <a href="https://www.facebook.com" className="text-muted" aria-label="Facebook"><i className="bi bi-facebook"></i></a>
+                            <a href="https://www.twitter.com" className="text-muted" aria-label="Twitter"><i className="bi bi-twitter"></i></a>
+                            <a href="https://www.instagram.com" className="text-muted" aria-label="Instagram"><i className="bi bi-instagram"></i></a>
                         </div>
                     </Col>
                 </Row>
