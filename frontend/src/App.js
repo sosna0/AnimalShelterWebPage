@@ -2,8 +2,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/common/Layout';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import { AuthProvider } from './hooks/use-auth';
 import Animals from './pages/Animals';
+import Register from './pages/Register';
+import { AuthProvider } from './hooks/use-auth';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Layout>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/animals" element={<Animals />} />
             </Routes>

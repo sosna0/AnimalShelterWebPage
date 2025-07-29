@@ -25,8 +25,14 @@ export const AuthProvider = ({ children }) => {
         setUser(null)
     }
 
+    const register = async (userData) => {
+        await axios.post(endpoints.auth.register, userData)
+        const userResponse = await axios.get(endpoints.auth.me)
+        setUser(userResponse.data)
+    }
+
     return (
-        <AuthContext.Provider value={{ user, login, logout }}>
+        <AuthContext.Provider value={{ user, login, logout, register }}>
             {children}
         </AuthContext.Provider>
     )
