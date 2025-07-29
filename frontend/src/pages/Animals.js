@@ -62,7 +62,7 @@ const Animals = () => {
     );
 
     return (
-        <Container className="py-5">
+        <Container className="py-4">
             <h1 className="text-center mb-4">Our Animals</h1>
             <SearchFilterBar 
                 onFilterChange={fetchAnimals}

@@ -4,7 +4,7 @@ import { Navbar, Nav, Container, Image } from 'react-bootstrap';
 
 const Header = () => {
     return (
-        <Navbar bg="light" expand="lg" fixed="top" className="border-bottom shadow">
+        <Navbar bg="light" expand="lg" fixed="top" className="border-bottom shadow" style={{ height: '60px' }}>
             <Container>
                 
                 {/* Brand section with logo and name */}
