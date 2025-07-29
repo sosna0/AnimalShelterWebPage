@@ -1,61 +1,39 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Navbar, Nav, Container, Image } from 'react-bootstrap';
 
 const Header = () => {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top border-bottom shadow">
-            <div className="container">
+        <Navbar bg="light" expand="lg" fixed="top" className="border-bottom shadow">
+            <Container>
+                
                 {/* Brand section with logo and name */}
-                <div className="d-flex align-items-center">
-                    <Link className="navbar-brand d-flex align-items-center" to="/">
-                        <img
-                            src="icons/logo256.png"
-                            alt="Shelter Logo"
-                            height="40"
-                            className="d-inline-block align-text-top me-2"
-                        />
-                        <span>Animal Shelter</span>
-                    </Link>
-                </div>
+                <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
+                    <Image
+                        src="icons/logo256.png"
+                        alt="Shelter Logo"
+                        height="40"
+                        className="d-inline-block me-2"
+                    />
+                    <span>Animal Shelter</span>
+                </Navbar.Brand>
 
                 {/* Navbar toggler for small screens */}
-                <button
-                    className="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav"
-                    aria-controls="navbarNav"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                    <span className="navbar-toggler-icon"></span>
-                </button>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
                 {/* Navbar links */}
-                <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav ms-auto">
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/">Home</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/animals">Our Animals</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/findanimal">Find Your Animal</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/volunteer">Volunteer</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/donate">Donate</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/login">Login</Link>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="ms-auto">
+                        <Nav.Link as={Link} to="/">Home</Nav.Link>
+                        <Nav.Link as={Link} to="/animals">Our Animals</Nav.Link>
+                        <Nav.Link as={Link} to="/findanimal">Find Your Animal</Nav.Link>
+                        <Nav.Link as={Link} to="/volunteer">Volunteer</Nav.Link>
+                        <Nav.Link as={Link} to="/donate">Donate</Nav.Link>
+                        <Nav.Link as={Link} to="/login">Login</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
     );
 };
 
