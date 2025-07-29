@@ -63,9 +63,14 @@ const getAnimalById = async (req, res) => {
 };
 
 const getAnimalsByFilters = async (req, res) => {
-    const { species, ageMin, ageMax, adoptionStatus, gender } = req.query;
+    const { name, species, ageMin, ageMax, adoptionStatus, gender } = req.query;
     const filters = {};
 
+    if (name) {
+        filters.name = {
+            [Op.like]: `%${name}%`
+        };
+    }
     if (species) {
         filters.species = species;
     }

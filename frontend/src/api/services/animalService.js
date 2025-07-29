@@ -10,3 +10,8 @@ export const getAnimalById = async (id) => {
     const response = await axios.get(endpoints.animals.getById(id));
     return response.data;
 }
+
+export const getAnimalsByFilters = async (filters) => {
+    const response = await axios.get(endpoints.animals.filter, { params: filters });
+    return response.data;
+}
