@@ -1,3 +1,5 @@
+import { get } from "../../src/api/axios";
+
 export const endpoints = {
     animals: {
         create: '/animals',
@@ -31,7 +33,8 @@ export const endpoints = {
     users: {
         get: '/users',
         getById: (id) => `/users/${id}`,
-        getByUsername: (name) => `/users/${name}`
+        getByUsername: (name) => `/users/username/${name}`,
+        getByEmail: (email) => `/users/email/${email}`
     },
 
     auth: {

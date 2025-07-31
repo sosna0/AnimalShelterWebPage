@@ -58,9 +58,9 @@ const getVolunteerById = async (req, res) => {
     }
 };
 
-const getVolunteerByUserId = async (req, res) => {
+const getVolunteersByUserId = async (req, res) => {
     try {
-        const volunteer = await Volunteer.findByPk({
+        const volunteer = await Volunteer.findAll({
             where: {
                 userId: req.params.userId
             }
@@ -138,7 +138,7 @@ module.exports = {
     createVolunteer,
     getVolunteers,
     getVolunteerById,
-    getVolunteerByUserId,
+    getVolunteersByUserId,
     getVolunteersByAnimalId,
     updateVolunteer,
     deleteVolunteer

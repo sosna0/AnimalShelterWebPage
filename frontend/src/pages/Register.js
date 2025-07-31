@@ -1,6 +1,8 @@
-import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
+import { getUserByUsername, getUserByEmail } from "../api/services/userService";
+
 
 const Register = () => {
     const { register } = useAuth();
@@ -12,27 +14,81 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const [usernameTaken, setUsernameTaken] = useState(false);
+    const [emailTaken, setEmailTaken] = useState(false);
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const checkUsername = async () => {
+        if (!username) {
+            setUsernameTaken(false);
+            return;
+        }
         try {
-            await register({
-                name,
-                surname,
-                username,
-                email,
-                password
-            });
-            navigate('/');
-        // add more specific error handling!!!!
-        } catch (error) {
-            alert('Cannot create account. Please check your data.');
+            await getUserByUsername(username);
+            setUsernameTaken(true); // user istnieje
+        } catch (err) {
+            setUsernameTaken(false); // user nie istnieje (404)
         }
     };
+    
+    const checkEmail = async () => {
+        if (!email) {
+            setEmailTaken(false);
+            return;
+        }
+        try {
+            await getUserByEmail(email);
+            setEmailTaken(true); // email zajęty
+        } catch (err) {
+            setEmailTaken(false); // email wolny
+        }
+    };    
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (usernameTaken || emailTaken) return;
+
+        setIsSubmitting(true);
+        try {
+            await register({ name, surname, username, email, password });
+        navigate('/');
+    } catch (error) {
+            alert('Cannot create account. Please check your data.');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    // debounce-like behavior
+    useEffect(() => {
+        const timer = setTimeout(() => checkUsername(), 500);
+        return () => clearTimeout(timer);
+    }, [username]);
+
+    useEffect(() => {
+        const timer = setTimeout(() => checkEmail(), 500);
+        return () => clearTimeout(timer);
+    }, [email]);
+
+    const isFormInvalid =
+        !name || !surname || !username || !email || !password || usernameTaken || emailTaken;
 
     return (
         <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
             <div className="card p-4 shadow" style={{ maxWidth: '400px', width: '100%' }}>
-                <h2 className="text-center mb-4">Register</h2>
+                <div className="position-relative text-center mb-4">
+                    <button
+                        type="button"
+                        onClick={() => navigate('/login')}
+                        className="btn btn-link position-absolute start-0 top-0 mt-1 ms-1"
+                        style={{ textDecoration: 'none' }}
+                        aria-label="Back to login"
+                    >
+                        <i className="bi bi-arrow-left"></i>
+                    </button>
+                    <h2 className="m-0">Register</h2>
+                </div>
 
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
@@ -66,12 +122,15 @@ const Register = () => {
                         <input
                             type="text"
                             id="username"
-                            className="form-control"
+                            className={`form-control ${usernameTaken ? 'is-invalid' : ''}`}
                             placeholder="johndoe"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             required
                         />
+                        {usernameTaken && (
+                            <div className="invalid-feedback">This username is already taken.</div>
+                        )}
                     </div>
 
                     <div className="mb-3">
@@ -79,12 +138,15 @@ const Register = () => {
                         <input
                             type="email"
                             id="email"
-                            className="form-control"
+                            className={`form-control ${emailTaken ? 'is-invalid' : ''}`}
                             placeholder="john@example.com"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
                         />
+                        {emailTaken && (
+                            <div className="invalid-feedback">This email is already registered.</div>
+                        )}
                     </div>
 
                     <div className="mb-3">
@@ -100,15 +162,14 @@ const Register = () => {
                         />
                     </div>
 
-                    <button type="submit" className="btn btn-primary w-100">Create Account</button>
+                    <button
+                        type="submit"
+                        className="btn btn-primary w-100"
+                        disabled={isFormInvalid || isSubmitting}
+                    >
+                        {isSubmitting ? 'Creating...' : 'Create Account'}
+                    </button>
                 </form>
-
-                {/* <div className="mt-3 text-center">
-                    <div>Already have an account?</div>
-                    <div>
-                        Click <Link to="/login">here</Link> to sign in
-                    </div>
-                </div> */}
             </div>
         </div>
     );
