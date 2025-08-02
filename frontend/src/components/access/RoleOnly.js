@@ -1,12 +1,9 @@
 import { useAuth } from '../../hooks/use-auth'
 
-const RoleOnly = ({ children, allowedRoles }) => {
+export const RoleOnly = ({ children, allowedRoles }) => {
     const { user } = useAuth()
     return allowedRoles.includes(user?.role) ? children : null
-};
-
-export default RoleOnly;
-  
+};  
 
 // Usage example:
 {/* <RoleOnly allowedRoles={['staff']}>

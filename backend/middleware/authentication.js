@@ -1,44 +1,41 @@
-const userController = require('../controllers/userController.js');
+const User = require('../models/userModel.js');
 
 const isPublic = async (req, res, next) => {
-    if (req.session.userId) {
-        try {
-            const user = await userController.getUserById(req.session.userId);
-            
-            if (user.role === 'public') {
-                return next();
-            } 
-            else {
-                return res.status(403).send({ error: 'User does not have the public role' });
-            }
-        } catch (error) {
-            console.error(error);
-            return res.status(500).send({ error: 'Failed to authenticate user' });
+    try {
+        const user = await User.findByPk(req.session.userId);
+
+        if (!user) {
+            return res.status(401).send({ error: 'User not found' });
         }
-    }
-    else {
-        return res.status(401).send({ error: 'User is not authenticated' });
+        
+        if (user.role !== 'public') {
+            return res.status(403).send({ error: 'User does not have the public role' });
+        }
+
+        req.user = user;
+        return next();
+
+    } catch (error) {
+        console.error('Authentication error:', error);
+        return res.status(500).send({ error: 'Failed to authenticate user' });
     }
 };
 
 const isStaff = async (req, res, next) => {
-    if (req.session.userId) {
-        try {
-            const user = await userController.getUserById(req.session.userId);
-            
-            if (user.role === 'staff') {
-                return next();
-            } 
-            else {
-                return res.status(403).send({ error: 'User is not staff' });
-            }
-        } catch (error) {
-            console.error(error);
-            return res.status(500).send({ error: 'Failed to authenticate user' });
+    try {
+        const user = await User.findByPk(req.session.userId);
+        if (!user) {
+            return res.status(401).send({ error: 'User not found' });
         }
-    }
-    else {
-        return res.status(401).send({ error: 'User is not authenticated' });
+        if (user.role !== 'staff') {
+            return res.status(403).send({ error: 'User is not staff' });
+        }
+        req.user = user;
+        return next();
+        
+    } catch (error) {
+        console.error('Authentication error:', error);
+        return res.status(500).send({ error: 'Failed to authenticate user' });
     }
 };
 
@@ -50,8 +47,6 @@ const isAuthenticated = (req, res, next) => {
         return res.status(401).send({ error: 'User is not authenticated' });
     }
 };
-
-
 
 module.exports = {
     isPublic,
