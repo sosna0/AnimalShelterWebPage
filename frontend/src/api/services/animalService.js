@@ -1,6 +1,11 @@
 import axios from '../axios';
 import endpoints from '../endpoints';
 
+export const createAnimal = async (animal) => {
+    const response = await axios.post(endpoints.animals.create, animal);
+    return response.data;
+};
+
 export const getAnimals = async () => {
     const response = await axios.get(endpoints.animals.get);
     return response.data;

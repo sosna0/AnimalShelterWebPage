@@ -3,7 +3,9 @@ import Layout from './components/common/Layout';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Animals from './pages/Animals';
+import AnimalNew from './pages/AnimalNew';
 import Register from './pages/Register';
+import { ProtectedRoute } from './components/access/ProtectedRoute';
 import { AuthProvider } from './hooks/use-auth';
 
 function App() {
@@ -16,6 +18,14 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/animals" element={<Animals />} />
+              <Route 
+                path="/animals/new" 
+                element={
+                  <ProtectedRoute allowedRoles={['staff']}>
+                    <AnimalNew />
+                  </ProtectedRoute>
+                }
+              />
             </Routes>
           </Layout>
       </Router>
