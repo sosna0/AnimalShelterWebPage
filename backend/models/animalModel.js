@@ -28,6 +28,8 @@ const Animal = sequelize.define('Animal', {
         }
     },
 
+    // add long description (behavior, features ...)
+
     species: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -38,7 +40,7 @@ const Animal = sequelize.define('Animal', {
 
     age: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: false,   // change to true
         validate: {
             min: 0,
             max: 100
