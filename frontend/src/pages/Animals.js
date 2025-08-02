@@ -64,27 +64,27 @@ const Animals = () => {
     );
 
     return (
-        <Container className="py-4">
+        <Container className="py-4 position-relative">
             <h1 className="text-center mb-4">Our Animals</h1>
             <SearchFilterBar 
                 onFilterChange={fetchAnimals}
                 initialFilters={activeFilters}
             />
-            <Row xs={1} md={2} className="g-4">
-                {animals.length > 0 ? (
-                    animals.map((animal) => (
+            {animals.length > 0 ? (
+                <Row xs={1} md={2}>
+                    {animals.map((animal) => (
                         <Col key={animal.id}>
                             <AnimalCard animal={animal} />
                         </Col>
-                    ))
-                ) : (
-                    <Col xs={12}>
-                        <Alert variant="info" className="text-center">
-                            No animals found matching your criteria.
-                        </Alert>
-                    </Col>
-                )}
-            </Row>
+                    ))}
+                </Row>
+            ) : (
+                <div className="mt-4 d-flex justify-content-center">
+                    <Alert variant="info" className="text-center">
+                        No animals found matching your criteria.
+                    </Alert>
+                </div>
+            )}
             
             <RoleOnly allowedRoles={['staff']}>
                 <Button
