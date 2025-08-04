@@ -20,3 +20,13 @@ export const getAnimalsByFilters = async (filters) => {
     const response = await axios.get(endpoints.animals.filter, { params: filters });
     return response.data;
 }
+
+export const updateAnimal = async (id, animal) => {
+    const response = await axios.put(endpoints.animals.update(id), animal);
+    return response.data;
+}
+
+export const deleteAnimal = async (id) => {
+    const response = await axios.delete(endpoints.animals.delete(id));
+    return response.data;
+}
