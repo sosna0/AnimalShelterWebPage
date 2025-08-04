@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Card, Spinner, Alert, Button } from 'react-bootstrap';
 import { format } from 'date-fns';
 import { getAnimalById, deleteAnimal } from '../api/services/animalService';
-import ConfirmationForm from '../components/common/ConfirmationForm';
+import ConfirmationModal from '../components/common/ConfirmationModal';
 import GoBackButton from '../components/common/GoBackButton';
 import { RoleOnly } from '../components/access/RoleOnly';
 
@@ -14,7 +14,7 @@ const AnimalDetails = () => {
     const [animal, setAnimal] = useState([]); // state to hold animal details
     const [loading, setLoading] = useState(true); // loading state for spinner
     const [error, setError] = useState(null); // error state for error messages
-    const [showDeleteForm, setShowDeleteForm] = useState(false); // state to control delete confirmation
+    const [showDeleteModal, setShowDeleteModal] = useState(false); // state to control delete confirmation
 
     // useEffect to fetch animal details on component mount
     useEffect(() => {
@@ -50,7 +50,7 @@ const AnimalDetails = () => {
             setError(err.message || 'Failed to delete animal');
             console.error('Error deleting animal:', err);
         } finally {
-            setShowDeleteForm(false);
+            setShowDeleteModal(false);
         }
     };
 
@@ -179,7 +179,7 @@ const AnimalDetails = () => {
                                     </Button>
                                     <Button 
                                         variant="danger" 
-                                        onClick={() => setShowDeleteForm(true)}
+                                        onClick={() => setShowDeleteModal(true)}
                                     >
                                         Delete
                                     </Button>
@@ -190,9 +190,9 @@ const AnimalDetails = () => {
                 </Row>
             </Card>
 
-            <ConfirmationForm
-                show={showDeleteForm}
-                onHide={() => setShowDeleteForm(false)}
+            <ConfirmationModal
+                show={showDeleteModal}
+                onHide={() => setShowDeleteModal(false)}
                 onConfirm={handleDelete}
                 title="Delete Animal"
                 message={`Are you sure you want to delete ${animal.name}? This action cannot be undone.`}
