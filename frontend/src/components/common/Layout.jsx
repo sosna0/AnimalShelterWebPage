@@ -5,7 +5,7 @@ import { Container } from "react-bootstrap";
 
 const Layout = ({ children }) => {
     return (
-        <div>
+        <div className="d-flex flex-column min-vh-100">
             <Header />
             <Container fluid className="p-0" style={{ marginTop: '67px' }}>
                 {children}
