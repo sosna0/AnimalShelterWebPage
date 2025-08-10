@@ -24,14 +24,26 @@ const ProfileDropdown = ({dropdownPaths, dropdownDescr}) => {
             title="Your Profile"
             id="navbarDropdown"
             className={isActive ? 'active' : ''}
+            align="end"
         >
             {dropdownPaths.map((link, index) => (
-                <NavDropdown.Item key={index} as={NavLink} to={link}>
+                <NavDropdown.Item 
+                    key={index} 
+                    as={NavLink} 
+                    to={link}
+                    className="nav-link dropdown-item"
+                >
                     {dropdownDescr[index]}
                 </NavDropdown.Item>
             ))}
             <NavDropdown.Divider />
-            <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+            <NavDropdown.Item
+                onClick={handleLogout}
+                className="nav-link dropdown-item-logout"
+                // style={{color: "red"}}
+            >
+                Logout
+            </NavDropdown.Item>
         </NavDropdown>
     );
 };
