@@ -1,12 +1,25 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Navbar, Nav, Container, Image } from 'react-bootstrap';
-import { Link, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
     const [expanded, setExpanded] = useState(false);
-    const location = useLocation();
-
+    const collapseTimer = useRef(null);
     const handleNavClick = () => setExpanded(false);
+
+    // we can change the timer value to omething else
+    const handleMouseLeave = () => {
+        collapseTimer.current = setTimeout(() => {
+            setExpanded(false);
+        }, 250);
+    };
+
+    const handleMouseEnter = () => {
+        if (collapseTimer.current) {
+            clearTimeout(collapseTimer.current);
+            collapseTimer.current = null;
+        }
+    };
 
     return (
         <Navbar
@@ -20,7 +33,7 @@ const Header = () => {
             <Container fluid className='p-0'>
 
                 <Navbar.Brand
-                    as={Link}
+                    as={NavLink}
                     to="/"
                     onClick={handleNavClick}
                     className="mx-4 d-flex align-items-center"
@@ -36,14 +49,19 @@ const Header = () => {
 
                 <Navbar.Toggle aria-controls="main-navbar-nav" className='mx-4' />
 
-                <Navbar.Collapse id="main-navbar-nav" className="mx-4 bg-light">
+                <Navbar.Collapse 
+                    id="main-navbar-nav" 
+                    className="mx-4 bg-light"
+                    onMouseLeave={handleMouseLeave}
+                    onMouseEnter={handleMouseEnter}
+                >
                     <Nav className="ms-auto">
-                        <Nav.Link as={Link} to="/" active={location.pathname === "/"} onClick={handleNavClick}>Home</Nav.Link>
-                        <Nav.Link as={Link} to="/animals" active={location.pathname === "/animals"} onClick={handleNavClick}>Our Animals</Nav.Link>
-                        <Nav.Link as={Link} to="/findanimal" active={location.pathname === "/findanimal"} onClick={handleNavClick}>Find Your Animal</Nav.Link>
-                        <Nav.Link as={Link} to="/volunteer" active={location.pathname === "/volunteer"} onClick={handleNavClick}>Volunteer</Nav.Link>
-                        <Nav.Link as={Link} to="/donate" active={location.pathname === "/donate"} onClick={handleNavClick}>Donate</Nav.Link>
-                        <Nav.Link as={Link} to="/login" active={location.pathname === "/login"} onClick={handleNavClick}>Login</Nav.Link>
+                        <Nav.Link as={NavLink} to="/" end>Home</Nav.Link>
+                        <Nav.Link as={NavLink} to="/animals">Our Animals</Nav.Link>
+                        <Nav.Link as={NavLink} to="/findanimal">Find Your Animal</Nav.Link>
+                        <Nav.Link as={NavLink} to="/volunteer">Volunteer</Nav.Link>
+                        <Nav.Link as={NavLink} to="/donate">Donate</Nav.Link>
+                        <Nav.Link as={NavLink} to="/login">Login</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
                 
