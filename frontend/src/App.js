@@ -5,7 +5,7 @@ import Login from './pages/Login';
 import Animals from './pages/Animals';
 import AnimalDetails from './pages/AnimalDetails';
 import AnimalNew from './pages/AnimalNew';
-import AnimalEdit from './pages/AnimalEdit';
+// import AnimalEdit from './pages/AnimalEdit';
 import Register from './pages/Register';
 import { ProtectedRoute } from './components/access/ProtectedRoute';
 import { AuthProvider } from './hooks/use-auth';
@@ -29,14 +29,14 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-              <Route 
+              {/* <Route 
                 path="/animals/edit/:id" 
                 element={
                   <ProtectedRoute allowedRoles={['staff']}>
                     <AnimalEdit />
                   </ProtectedRoute>
                 }
-              />
+              /> */}
             </Routes>
           </Layout>
       </Router>
