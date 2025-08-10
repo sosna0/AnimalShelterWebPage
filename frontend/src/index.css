@@ -18,13 +18,13 @@ html {
 
 /* colors can be commented out */
 .nav-link.active {
-  font-weight: 500;
+  /* font-weight: 500; */
   color: #d35400 !important;
   border-bottom: 2px solid #d35400;
 }
 
 /* colors can be commented out */
 .nav-link:hover {
-  font-weight: 500;
+  /* font-weight: 500; */
   color: #e67e22 !important;
 }

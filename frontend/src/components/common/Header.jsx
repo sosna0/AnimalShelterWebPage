@@ -1,6 +1,8 @@
 import { useState, useRef } from 'react';
 import { Navbar, Nav, Container, Image } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+import ProfileDropdown from './ProfileDropdown';
+import { RoleOnly } from '../access/RoleOnly';
 
 const Header = () => {
     const [expanded, setExpanded] = useState(false);
@@ -61,7 +63,27 @@ const Header = () => {
                         <Nav.Link as={NavLink} to="/findanimal">Find Your Animal</Nav.Link>
                         <Nav.Link as={NavLink} to="/volunteer">Volunteer</Nav.Link>
                         <Nav.Link as={NavLink} to="/donate">Donate</Nav.Link>
-                        <Nav.Link as={NavLink} to="/login">Login</Nav.Link>
+
+                        
+                        <RoleOnly allowedRoles={["public"]}>
+                            <ProfileDropdown 
+                                dropdownPaths={["/user-profile", "/user-volunteer", "/user-donate"]} 
+                                dropdownDescr={["View Profile", "Manage your volunteers", "View your donations"]}
+                            />
+                        </RoleOnly>
+
+                        {/* TODO: add more options for staff only */}
+                        <RoleOnly allowedRoles={["staff"]}>
+                            <ProfileDropdown 
+                                dropdownPaths={["/user-profile", "/user-volunteer", "/user-donate"]} 
+                                dropdownDescr={["View Profile", "Manage volunteers", "View donations"]}
+                            />
+                        </RoleOnly>
+                        
+                        <RoleOnly allowedRoles={["guest"]}>
+                            <Nav.Link as={NavLink} to="/login">Login</Nav.Link>
+                        </RoleOnly>
+
                     </Nav>
                 </Navbar.Collapse>
                 
