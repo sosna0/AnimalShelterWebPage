@@ -7,7 +7,6 @@ const createDonation = async (req, res) => {
         nickname,
         message,
         paymentStatus = 'pending',
-        createdAt = new Date()
     } = req.body;
 
     try {
@@ -17,7 +16,6 @@ const createDonation = async (req, res) => {
             nickname: nickname,
             message: message,
             paymentStatus: paymentStatus,
-            createdAt: createdAt
         });
 
         res.status(201).send(donation);

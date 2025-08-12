@@ -6,6 +6,7 @@ import Animals from './pages/Animals';
 import AnimalDetails from './pages/AnimalDetails';
 import AnimalNew from './pages/AnimalNew';
 import Donations from './pages/Donations';
+import DonationForm from './pages/DonationForm';
 // import AnimalEdit from './pages/AnimalEdit';
 import Register from './pages/Register';
 import { ProtectedRoute } from './components/access/ProtectedRoute';
@@ -39,6 +40,7 @@ function App() {
                   }
                   /> */}
               <Route path="/donate" element={<Donations />} />
+              <Route path="/donate/payment" element={<DonationForm />} />
             </Routes>
           </Layout>
       </Router>
