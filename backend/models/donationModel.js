@@ -11,7 +11,7 @@ const Donation = sequelize.define('Donation', {
 
     userId:{
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         references: {
             model: 'User',
             key: 'id'
@@ -19,14 +19,14 @@ const Donation = sequelize.define('Donation', {
     },
 
     amount:{
-        type: DataTypes.FLOAT,
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
             min: 0.01
         }
     },
 
-    donorNickname:{
+    nickname:{
         type: DataTypes.STRING,
         allowNull: true,
         validate: {

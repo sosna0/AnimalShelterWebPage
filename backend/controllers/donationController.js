@@ -4,7 +4,7 @@ const createDonation = async (req, res) => {
     const { 
         userId,
         amount,
-        donorNickname,
+        nickname,
         message,
         paymentStatus = 'pending',
         createdAt = new Date()
@@ -14,7 +14,7 @@ const createDonation = async (req, res) => {
         const donation = await Donation.create({
             userId: userId,
             amount: amount,
-            donorNickname: donorNickname,
+            nickname: nickname,
             message: message,
             paymentStatus: paymentStatus,
             createdAt: createdAt
