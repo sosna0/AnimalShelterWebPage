@@ -19,8 +19,8 @@ sequelize
 
 
 // TODO: zamienić sync na migracje i usunąć. 
-// Na razie po zmianie modeli trzeba ręcznie usunąć bazę danych
-sequelize.sync()
+// Zmieniłem, bo ułatwie pracę
+sequelize.sync({alter: true})
   .then(() => {
     console.log('Database is synchronized.');
   })
