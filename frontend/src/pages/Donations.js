@@ -16,6 +16,27 @@ const Donations = () => {
 
         try {
             const data = await getDonations();
+            // const data = [
+            //     {
+            //       id: 1,
+            //       userId: null,
+            //       amount: 50.00,
+            //       nickname: "TestUser1",
+            //       message: "Świetna inicjatywa, powodzenia!",
+            //       paymentStatus: "completed",
+            //       createdAt: "2025-08-12T10:30:00Z"
+            //     },
+            //     {
+            //       id: 2,
+            //       userId: null,
+            //       amount: 25.50,
+            //       nickname: "TestUser2",
+            //       message: "Trzymam kciuki za wszystkie zwierzaki!",
+            //       paymentStatus: "pending",
+            //       createdAt: "2025-08-11T14:15:00Z"
+            //     }
+            //   ];
+              
             setDonation(data);
         } catch (err) {
             setError('Failed to fetch donations. Please try again later.');
@@ -29,59 +50,67 @@ const Donations = () => {
         fetchDonations();
     }, []);
 
-    // render loading spinner if data is being fetched
-    if (loading) return (
-        <Container className="text-center mt-5">
-            <Spinner animation="border" role="status">
-                <span className="visually-hidden">Loading...</span>
-            </Spinner>
-        </Container>
-    );
-
-    // render error message if there is an error
-    if (error) return (
-        <Container className="mt-4">
-            <Alert variant="danger">{error}</Alert>
-        </Container>
-    );
-
     return (
 
-        // TODO: Change this
-        <div>
-            <p>Here you can donate to our shelter.</p>
-            <p>All donations are used to help our animals.</p>
-            <p>Thank you for your support!</p>
-            <p>Click <a href="/donate">here</a> to donate.</p>
+        <Container>
+            <Row xs={1} lg={2}>
+                <Col className="text-center mt-4">
+                    <Container className="mb-4">
+                        <p>Here you can donate to our shelter.</p>
+                        <p>All donations are used to help our animals.</p>
+                        <p>Thank you for your support!</p>
+                        <p>
+                            Click <a href="/donate/payment">here</a> to donate.
+                        </p>
+                    </Container>
+                </Col>
             
+                <Col className="text-center mt-4">
+                    <h1 className="text-center mb-4">All donations</h1>
+            
+                    {loading === true ? (
+                        <Container className="text-center mt-5">
+                            <Spinner animation="border" role="status">
+                                <span className="visually-hidden">Loading...</span>
+                            </Spinner>
+                        </Container>
+                        ): error ? (
+                            <Container className="mt-4">
+                                <Alert variant="danger">{error}</Alert>
+                            </Container>
+                        ) : (
+                            <Container 
+                                style={{
+                                        maxWidth: '750px', minWidth: '25hh', paddingLeft: '30px',
+                                        paddingRight: '30px', overflowY: 'auto',
+                                        borderRadius: '10px', borderWidth: "3px", borderStyle: "solid",
+                                        borderColor: "rgb(230, 126, 34)", 
+                                        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                                        marginBottom: '50px', minHeight: '25vh', maxHeight: '68vh'
+                                    }} 
+                                className="py-4">
 
-        
-
-
-        <Container 
-            style={{ maxWidth: '750px', margin: '0 auto', paddingLeft: '30px', paddingRight: '30px' }} 
-            className="py-4">
-
-            <h1 className="text-center mb-4">All donations</h1>
-
-            {donations.length > 0 ? (
-                <Row xs={1} md={1}>
-                    {donations.map((donation) => (
-                        <Col key={donation.id}>
-                            <DonationCard donation={donation} />
-                        </Col>
-                    ))}
-                </Row>
-            ) : (
-                <div className="mt-4 d-flex justify-content-center">
-                    <Alert variant="info" className="text-center">
-                        Be our first donor.
-                    </Alert>
-                </div>
-            )}
+                                {donations.length > 0 ? (
+                                    <Row xs={1} md={1}>
+                                        {donations.map((donation) => (
+                                            <Col key={donation.id}>
+                                                <DonationCard donation={donation} />
+                                            </Col>
+                                        ))}
+                                    </Row>
+                                ) : (
+                                    <div className="mt-4 d-flex justify-content-center">
+                                        <Alert variant="info" className="text-center">
+                                            Be our first donor.
+                                        </Alert>
+                                    </div>
+                                )}
+                            </Container>
+                        )
+                    }
+                </Col>
+            </Row>  
         </Container>
-
-        </div>
     );
 
 

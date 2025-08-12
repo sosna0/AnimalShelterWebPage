@@ -3,7 +3,7 @@ import { Card } from 'react-bootstrap';
 
 const DonationCard = ({ donation }) => {
     return (
-        <Card className="mb-3">
+        <Card className="mb-5">
             <Card.Header className="d-flex justify-content-between py-3">
                 <div>
                     <span className="fw-bold">{donation.nickname}</span>
