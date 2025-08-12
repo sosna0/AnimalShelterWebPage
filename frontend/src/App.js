@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Animals from './pages/Animals';
 import AnimalDetails from './pages/AnimalDetails';
 import AnimalNew from './pages/AnimalNew';
+import Donations from './pages/Donations';
 // import AnimalEdit from './pages/AnimalEdit';
 import Register from './pages/Register';
 import { ProtectedRoute } from './components/access/ProtectedRoute';
@@ -33,10 +34,11 @@ function App() {
                 path="/animals/edit/:id" 
                 element={
                   <ProtectedRoute allowedRoles={['staff']}>
-                    <AnimalEdit />
+                  <AnimalEdit />
                   </ProtectedRoute>
-                }
-              /> */}
+                  }
+                  /> */}
+              <Route path="/donate" element={<Donations />} />
             </Routes>
           </Layout>
       </Router>
