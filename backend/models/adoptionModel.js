@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
-
+const User = require('./userModel.js');
+const Animal = require('./animalModel.js');
 
 const Adoption = sequelize.define('Adoption', {
     id:{
@@ -12,19 +13,11 @@ const Adoption = sequelize.define('Adoption', {
     userId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        references: {
-            model: 'User',
-            key: 'id'
-        }
     },
 
     animalId:{
         type: DataTypes.INTEGER,
         allowNull: false,
-        references: {
-            model: 'Animal',
-            key: 'id'
-        }
     },
 
     status:{
@@ -37,6 +30,14 @@ const Adoption = sequelize.define('Adoption', {
     },    
 
 
+});
+
+Adoption.belongsTo(User, {
+    foreignKey: 'userId'
+});
+
+Adoption.belongsTo(Animal, {
+    foreignKey: 'animalId'
 });
 
 module.exports = Adoption;

@@ -44,10 +44,6 @@ const User = sequelize.define('User', {
         defaultValue: 'public'
     },
     
-//   phone: STRING // chyba zbędne
-//   created_at: TIMESTAMP // chyba zbędne
-//   updated_at: TIMESTAMP // chyba zbędne
-
 });
 
 module.exports = User;

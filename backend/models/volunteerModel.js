@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
-
+const User = require('./userModel.js');
+const Animal = require('./animalModel.js');
 
 const Volunteer = sequelize.define('Volunteer', {
     id:{
@@ -12,19 +13,11 @@ const Volunteer = sequelize.define('Volunteer', {
     userId:{
         type: DataTypes.INTEGER,
         allowNull: false,
-        references: {
-            model: 'User',
-            key: 'id'
-        }
     },
     
     animalId:{
         type: DataTypes.INTEGER,
         allowNull: false,
-        references: {
-            model: 'Animal',
-            key: 'id'
-        }
     },
 
     // można zmniejszyć ilość aktywności
@@ -62,5 +55,14 @@ const Volunteer = sequelize.define('Volunteer', {
     
 
 });
+
+Volunteer.belongsTo(User, {
+    foreignKey: 'userId'
+});
+
+Volunteer.belongsTo(Animal, {
+    foreignKey: 'animalId'
+});
+
 
 module.exports = Volunteer;

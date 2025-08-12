@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
-
+const User = require('./userModel.js');
 
 const Donation = sequelize.define('Donation', {
     id:{
@@ -12,17 +12,13 @@ const Donation = sequelize.define('Donation', {
     userId:{
         type: DataTypes.INTEGER,
         allowNull: true,
-        references: {
-            model: 'User',
-            key: 'id'
-        }
     },
 
     amount:{
         type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
-            min: 0.01
+            min: 0
         }
     },
 
@@ -51,6 +47,10 @@ const Donation = sequelize.define('Donation', {
         }
     },
 
+});
+
+Donation.belongsTo(User, {
+    foreignKey: 'userId'
 });
 
 module.exports = Donation;
