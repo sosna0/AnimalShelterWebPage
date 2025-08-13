@@ -91,7 +91,10 @@ const AnimalDetails = () => {
         <Container className="py-4">
             <Row className="mb-4">
                 <Col md={1} className="d-flex align-items-center">
-                    <GoBackButton className="me-3" />
+                    <GoBackButton 
+                        className="me-3" 
+                        previousPage="/animals"
+                    />
                 </Col>
                 <Col md={10} className="text-center">
                     <h1 className="m-0">
