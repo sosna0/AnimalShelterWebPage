@@ -16,3 +16,8 @@ export const getDonationById = async (id) => {
     return response.data;
 };
 
+export const getDonationsByUserId = async (userId) => {
+    const response = await axios.get(endpoints.donations.getByUserId(userId));
+    return response.data;
+};
+
