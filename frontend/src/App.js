@@ -7,7 +7,7 @@ import AnimalDetails from './pages/AnimalDetails';
 import AnimalNew from './pages/AnimalNew';
 import Donations from './pages/Donations';
 import DonationForm from './pages/DonationForm';
-// import AnimalEdit from './pages/AnimalEdit';
+import AnimalEdit from './pages/AnimalEdit';
 import Register from './pages/Register';
 import { ProtectedRoute } from './components/access/ProtectedRoute';
 import { AuthProvider } from './hooks/use-auth';
@@ -31,14 +31,14 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-              {/* <Route 
+              <Route 
                 path="/animals/edit/:id" 
                 element={
                   <ProtectedRoute allowedRoles={['staff']}>
-                  <AnimalEdit />
+                    <AnimalEdit />
                   </ProtectedRoute>
-                  }
-                  /> */}
+                }
+              />
               <Route path="/donate" element={<Donations />} />
               <Route path="/donate/payment" element={<DonationForm />} />
             </Routes>
