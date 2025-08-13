@@ -2,11 +2,11 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-const GoBackButton = () => {
+const GoBackButton = ({ previousPage }) => {
     const navigate = useNavigate();
 
     const handleGoBack = () => {
-        navigate(-1);
+        navigate(previousPage || -1);
     }
     
     return (
