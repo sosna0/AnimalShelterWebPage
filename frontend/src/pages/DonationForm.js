@@ -72,7 +72,13 @@ const DonationForm = () => {
     };
 
     return (
-        <Container className="d-flex justify-content-center align-items-center my-5" style={{ minHeight: "100vh" }}>
+        <Container className="d-flex justify-content-center align-items-center" 
+            style={{
+                minHeight: "100vh",
+                marginTop: "6rem",
+                marginBottom: "6rem" 
+            }}>
+
             <Card style={{ maxWidth: "600px", width: "100%" }} className="p-4 shadow">
                 <div className="position-relative text-center mb-4">
                     <button
