@@ -33,7 +33,7 @@ const AnimalCard = ({ animal }) => {
                             <p className="mb-1"><strong>Age:</strong> {animal.age} years</p>
                             <p className="mb-1"><strong>Gender:</strong> {animal.gender}</p>
                             {animal.weight && <p className="mb-1"><strong>Weight:</strong> {animal.weight} kg</p>}
-                            <p className="mt-3 text-muted">{animal.description}</p>
+                            {animal.description && <p className="mt-3 text-muted">{animal.description}</p>}
                         </div>
                         
                         {/* Buttons section - TODO: delete button and make whole card act as one*/}

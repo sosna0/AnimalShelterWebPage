@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { createAnimal, updateAnimal } from "../../api/services/animalService";
 
 const AnimalForm = ({
-    initialData = { name: '', species: '', age: '', weight: '', gender: '', description: '', adoptionStatus: '' },
+    initialData = { name: '', species: '', age: '', weight: '', gender: '', description: '', longDescription: '', adoptionStatus: '' },
     submitLabel = "Submit",
     onSuccess = null
 }) => {
@@ -20,36 +20,29 @@ const AnimalForm = ({
         if (!animal.name?.trim()) {
             formErrors.name = "Name is required";
         }
+
         // species validation
         if (!animal.species) {
             formErrors.species = "Species is required";
         }
+
         // age validation
-        if (!animal.age) {
-            formErrors.age = "Age is required";
-        } else {
-            const age = parseFloat(animal.age);
-            if (isNaN(age) || age < 0 || age > 100) {
-                formErrors.age = "Age must be a number between 0 and 100";
-            }
+        const age = parseFloat(animal.age);
+        if (!isNaN(age) && (age < 0 || age > 100)) {
+            formErrors.age = "Age must be a number between 0 and 100";
         }
+
         // weight validation (required and positive)
-        if (!animal.weight) {
-            formErrors.weight = "Weight is required";
-        } else {
-            const weight = parseFloat(animal.weight);
-            if (isNaN(weight) || weight <= 0) {
-                formErrors.weight = "Weight must be a positive number";
-            }
+        const weight = parseFloat(animal.weight);
+        if (!isNaN(weight) && weight <= 0) {
+            formErrors.weight = "Weight must be a positive number";
         }
+
         // gender validation
         if (!animal.gender) {
             formErrors.gender = "Gender is required";
         }
-        // description validation
-        if (!animal.description?.trim()) {
-            formErrors.description = "Description is required";
-        }
+
         // adoption status validation
         if (!animal.adoptionStatus) {
             formErrors.adoptionStatus = "Adoption status is required";
@@ -65,6 +58,7 @@ const AnimalForm = ({
             age: parseInt(animal.age),
             weight: parseFloat(animal.weight),
             description: animal.description.trim(),
+            longDescription: animal.longDescription.trim(),
         };
         
         return formAnimal;
@@ -145,9 +139,9 @@ const AnimalForm = ({
                     isInvalid={!!errors.species}
                 >
                     <option value="" hidden>Select species</option>
-                    <option value="dog">Dog</option>
-                    <option value="cat">Cat</option>
-                    <option value="other">Other</option>
+                    <option value="Dog">Dog</option>
+                    <option value="Cat">Cat</option>
+                    <option value="Other">Other</option>
                     </Form.Select>
                 <Form.Control.Feedback type="invalid">
                     {errors.species}
@@ -201,9 +195,9 @@ const AnimalForm = ({
                     isInvalid={!!errors.gender}
                 >
                     <option value="" hidden>Select gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="unknown">Unknown</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Unknown">Unknown</option>
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                     {errors.gender}
@@ -215,7 +209,7 @@ const AnimalForm = ({
                 <Form.Label>Description</Form.Label>
                 <Form.Control
                     as="textarea"
-                    rows={3}
+                    rows={1}
                     placeholder="Enter a brief description"
                     name="description"
                     value={animal.description}
@@ -224,6 +218,23 @@ const AnimalForm = ({
                 />
                 <Form.Control.Feedback type="invalid">
                     {errors.description}
+                </Form.Control.Feedback>
+            </Form.Group>
+
+            {/* Long Description */}
+            <Form.Group className="mb-3">
+                <Form.Label>Long Description</Form.Label>
+                <Form.Control
+                    as="textarea"
+                    rows={2}
+                    placeholder="Enter a detailed description"
+                    name="longDescription"
+                    value={animal.longDescription}
+                    onChange={handleChange}
+                    isInvalid={!!errors.longDescription}
+                />
+                <Form.Control.Feedback type="invalid">
+                    {errors.longDescription}
                 </Form.Control.Feedback>
             </Form.Group>
 
@@ -237,9 +248,9 @@ const AnimalForm = ({
                     isInvalid={!!errors.adoptionStatus}
                 >
                     <option value="" hidden>Select adoption status</option>
-                    <option value="available">Available</option>
-                    <option value="unavailable">Unavailable</option>
-                    <option value="adopted">Adopted</option>
+                    <option value="Unavailable">Unavailable</option>
+                    <option value="Available">Available</option>
+                    <option value="Adopted">Adopted</option>
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                     {errors.adoptionStatus}

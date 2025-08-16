@@ -65,9 +65,9 @@ const SearchFilterBar = ({ onFilterChange, initialFilters }) => {
                         size="sm"
                     >
                         <option value="">All Species</option>
-                        <option value="dog">Dog</option>
-                        <option value="cat">Cat</option>
-                        <option value="other">Other</option>
+                        <option value="Dog">Dog</option>
+                        <option value="Cat">Cat</option>
+                        <option value="Other">Other</option>
                     </Form.Select>
                 </Col>
                 <Col lg={2}>
@@ -100,9 +100,9 @@ const SearchFilterBar = ({ onFilterChange, initialFilters }) => {
                         size="sm"
                     >
                         <option value="">Any Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="unknown">Unknown</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Unknown">Unknown</option>
                     </Form.Select>
                 </Col>
                 <Col lg={2}>
@@ -113,9 +113,10 @@ const SearchFilterBar = ({ onFilterChange, initialFilters }) => {
                         size="sm"
                     >
                         <option value="">Any Status</option>
-                        <option value="available">Available</option>
-                        <option value="pending">Pending</option>
-                        <option value="adopted">Adopted</option>
+                        <option value="Unavailable">Unavailable</option>
+                        <option value="Available">Available</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Adopted">Adopted</option>
                     </Form.Select>
                 </Col>
                 <Col lg={2} className="d-flex gap-2">
