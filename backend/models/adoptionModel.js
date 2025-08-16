@@ -4,6 +4,7 @@ const User = require('./userModel.js');
 const Animal = require('./animalModel.js');
 
 const Adoption = sequelize.define('Adoption', {
+
     id:{
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -21,14 +22,13 @@ const Adoption = sequelize.define('Adoption', {
     },
 
     status:{
-        type: DataTypes.ENUM('pending', 'approved', 'rejected', 'completed'),
+        type: DataTypes.ENUM('Pending', 'Approved', 'Rejected'),
         allowNull: false,
-        defaultValue: 'pending',
+        defaultValue: 'Pending',
         validate: {
-            isIn: [['pending', 'approved', 'rejected', 'completed']]
+            isIn: [['Pending', 'Approved', 'Rejected']]
         }
     },    
-
 
 });
 

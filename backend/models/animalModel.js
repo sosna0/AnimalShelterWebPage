@@ -1,7 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 
-
 const Animal = sequelize.define('Animal', {
 
     id: {
@@ -13,7 +12,6 @@ const Animal = sequelize.define('Animal', {
     name: {
         type: DataTypes.STRING(100),
         allowNull: false,
-        unique: true,
         validate: {
             notEmpty: true,
             len: [1, 100]
@@ -28,19 +26,25 @@ const Animal = sequelize.define('Animal', {
         }
     },
 
-    // add long description (behavior, features ...)
+    longDescription: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+        validate: {
+            len: [0, 2000]
+        }
+    },
 
     species: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-            isIn: [['dog', 'cat', 'other']]
+            isIn: [['Dog', 'Cat', 'Other']]
         }
     },
 
     age: {
         type: DataTypes.INTEGER,
-        allowNull: false,   // change to true
+        allowNull: true,
         validate: {
             min: 0,
             max: 100
@@ -48,10 +52,10 @@ const Animal = sequelize.define('Animal', {
     },
 
     gender: {
-        type: DataTypes.ENUM('male', 'female', 'unknown'),
+        type: DataTypes.ENUM('Male', 'Female', 'Unknown'),
         allowNull: false,
         validate: {
-            isIn: [['male', 'female', 'unknown']]
+            isIn: [['Male', 'Female', 'Unknown']]
         }
     },
 
@@ -66,10 +70,10 @@ const Animal = sequelize.define('Animal', {
     },
 
     adoptionStatus: {
-        type: DataTypes.ENUM('available', 'unavailable', 'adopted'),
-        defaultValue: 'available',
+        type: DataTypes.ENUM('Unavailable', 'Available', 'Pending', 'Adopted'),
+        defaultValue: 'Available',
         validate: {
-            isIn: [['available', 'unavailable', 'adopted']]
+            isIn: [['Unavailable', 'Available', 'Pending', 'Adopted']]
         }
     },
 

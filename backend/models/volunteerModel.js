@@ -4,6 +4,7 @@ const User = require('./userModel.js');
 const Animal = require('./animalModel.js');
 
 const Volunteer = sequelize.define('Volunteer', {
+    
     id:{
         type: DataTypes.INTEGER,
         primaryKey: true,
