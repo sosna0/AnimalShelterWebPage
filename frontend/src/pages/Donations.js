@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Spinner, Alert, Button, Card } from 'react-bootstrap';
-import { getDonations } from "../api/services/donationService";
+import { Container, Row, Col, Spinner, Alert, Button } from 'react-bootstrap';
+// import { getDonations } from "../api/services/donationService";  // to add later
 import DonationCard from "../components/donations/DonationCard";
-import AchievementsCard from "../components/common/AchievementsBox";
+import AchievementsCard from "../components/donations/AchievementsBox";
 
 
 const Donations = () => {
