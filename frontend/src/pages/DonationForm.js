@@ -52,6 +52,7 @@ const DonationForm = () => {
         try {
             await createDonation(donation);
 
+            // TODO: redirect to ProcessingPayment page
             switch (formData.paymentMethod) {
                 case "credit_card":
                     navigate("/payment/credit-card");
