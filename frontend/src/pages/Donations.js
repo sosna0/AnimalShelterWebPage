@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Spinner, Alert, Button, Image } from 'react-bootstrap';
 import DonationCard from "../components/donations/DonationCard";
 import { getDonations } from "../api/services/donationService";
-import AchievementsCard from "../components/common/AchievementsBox";
+import AchievementsCard from "../components/donations/AchievementsBox";
 import { FaExternalLinkAlt } from "react-icons/fa";
 
 const Donations = () => {

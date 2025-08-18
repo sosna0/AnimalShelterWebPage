@@ -138,20 +138,20 @@ const AnimalDetails = () => {
                             <Row className="mb-3">
                                 <Col sm={4}>
                                     <p><strong>Species:</strong> {animal.species}</p>
-                                    <p><strong>Breed:</strong> {animal.breed || 'not specified'}</p>
+                                    <p><strong>Breed:</strong> {animal.breed || 'Not specified'}</p>
                                     <p><strong>Gender:</strong> {animal.gender}</p>
-                                    <p><strong>Age:</strong> {animal.age == null ? 'not specified' : `${animal.age} year${animal.age === 1 ? '' : 's'}`}</p>
-                                    <p><strong>Weight:</strong> {animal.weight || 'not specified'} kg</p>
+                                    <p><strong>Age:</strong> {animal.age == null ? 'Not specified' : `${animal.age} year${animal.age === 1 ? '' : 's'}`}</p>
+                                    <p><strong>Weight:</strong> {animal.weight ? `${animal.weight} kg` : 'Not specified'}</p>
                                     <p><strong>Status:</strong> {animal.adoptionStatus}</p>
                                     <p><strong>In Shelter Since:</strong> {
                                         animal.createdAt ? 
                                         format(new Date(animal.createdAt), 'dd-MM-yyyy') :
-                                        'not available'
+                                        'Not available'
                                     }</p>
                                 </Col>
                                 <Col sm={8}>
                                     <strong>Long Description:</strong><br />
-                                    {animal.description}
+                                    {animal.longDescription || 'No long description available'}
                                 </Col>
                             </Row>
 
@@ -161,7 +161,7 @@ const AnimalDetails = () => {
                                     <Button 
                                         variant="primary" 
                                         onClick={handleAdopt}
-                                        disabled={animal.adoptionStatus !== 'available'}
+                                        disabled={animal.adoptionStatus !== 'Available'}
                                     >
                                         Adopt
                                     </Button>

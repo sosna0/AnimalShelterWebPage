@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require('cors');
 const session = require('express-session');
+const initDatabase = require('./config/dbInit');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -31,6 +32,9 @@ app.use(cors({
     origin: 'http://localhost:3000',
     credentials: true
 }));
+
+// initialize database
+initDatabase();
 
 app.use(session({
   secret: 'top-secret', //this should be hidden and more complex

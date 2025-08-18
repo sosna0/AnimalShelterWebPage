@@ -3,6 +3,7 @@ const sequelize = require('../config/db');
 const User = require('./userModel.js');
 
 const Donation = sequelize.define('Donation', {
+    
     id:{
         type: DataTypes.INTEGER,
         primaryKey: true,
