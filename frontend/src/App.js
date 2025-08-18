@@ -7,6 +7,7 @@ import AnimalDetails from './pages/AnimalDetails';
 import AnimalNew from './pages/AnimalNew';
 import Donations from './pages/Donations';
 import DonationNew from './pages/DonationNew';
+import UserDonations from './pages/UserDonations';
 import AnimalEdit from './pages/AnimalEdit';
 import Register from './pages/Register';
 import { ProtectedRoute } from './components/access/ProtectedRoute';
@@ -41,6 +42,14 @@ function App() {
               />
               <Route path="/donate" element={<Donations />} />
               <Route path="/donate/payment" element={<DonationNew />} />
+              <Route 
+                path="/user-donations" 
+                element={
+                  <ProtectedRoute allowedRoles={['public', 'staff']}>
+                    <UserDonations />
+                  </ProtectedRoute>
+                }
+              />
             </Routes>
           </Layout>
       </Router>
