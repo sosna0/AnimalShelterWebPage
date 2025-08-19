@@ -31,8 +31,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // CORS setup to allow requests from the frontend
 app.use(cors({
-		origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
-		credentials: true
+	origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+	credentials: true
 }));
 
 // initialize database
