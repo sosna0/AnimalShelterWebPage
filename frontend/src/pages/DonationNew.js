@@ -4,7 +4,7 @@ import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import { createDonation } from "../api/services/donationService";
 import { useAuth } from "../hooks/use-auth";
 
-const DonationForm = () => {
+const DonationNew = () => {
     const navigate = useNavigate();
     const { user } = useAuth();
 
@@ -199,6 +199,9 @@ const DonationForm = () => {
                                     placeholder="123456789"
                                     value={formData.phoneNumber}
                                     onChange={(e) => handleChange("phoneNumber", e.target.value)}
+                                    pattern="[0-9]"
+                                    inputMode="numeric"
+                                    minLength={9}
                                     required
                                 />
                             </Form.Group>
@@ -249,4 +252,4 @@ const DonationForm = () => {
     );
 };
 
-export default DonationForm;
+export default DonationNew;

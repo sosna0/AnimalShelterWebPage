@@ -9,7 +9,7 @@ const Header = () => {
     const collapseTimer = useRef(null);
     const handleNavClick = () => setExpanded(false);
 
-    // we can change the timer value to omething else
+    // we can change the timer value to something else
     const handleMouseLeave = () => {
         collapseTimer.current = setTimeout(() => {
             setExpanded(false);
@@ -67,16 +67,16 @@ const Header = () => {
                         
                         <RoleOnly allowedRoles={["public"]}>
                             <ProfileDropdown 
-                                dropdownPaths={["/user-profile", "/user-volunteers", "/user-donations"]} 
-                                dropdownDescr={["View Profile", "Manage your volunteers", "View your donations"]}
+                                dropdownPaths={["/user-profile", "/user-adoptions", "/user-donations"]} 
+                                dropdownDescr={["View Profile", "Manage your adoptions", "View your donations"]}
                             />
                         </RoleOnly>
 
                         {/* TODO: add more options for staff only */}
                         <RoleOnly allowedRoles={["staff"]}>
                             <ProfileDropdown 
-                                dropdownPaths={["/user-profile", "/user-volunteers", "/user-donations"]} 
-                                dropdownDescr={["View Profile", "Manage volunteers", "View donations"]}
+                                dropdownPaths={["/user-profile", "/user-adoptions"]} 
+                                dropdownDescr={["View Profile", "Manage adoptions"]}
                             />
                         </RoleOnly>
                         

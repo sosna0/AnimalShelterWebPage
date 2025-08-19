@@ -34,7 +34,9 @@ export const endpoints = {
         get: '/users',
         getById: (id) => `/users/${id}`,
         getByUsername: (name) => `/users/username/${name}`,
-        getByEmail: (email) => `/users/email/${email}`
+        getByEmail: (email) => `/users/email/${email}`,
+        update: (id) => `/users/${id}`,
+        delete: (id) => `/users/${id}`
     },
 
     auth: {

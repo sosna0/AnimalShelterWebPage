@@ -2,14 +2,17 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/common/Layout';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import Animals from './pages/Animals';
 import AnimalDetails from './pages/AnimalDetails';
 import AnimalNew from './pages/AnimalNew';
+import AnimalEdit from './pages/AnimalEdit';
 import Donations from './pages/Donations';
 import DonationNew from './pages/DonationNew';
+import ProfileNavigationCard from './components/common/ProfileNavigationCard';
 import UserDonations from './pages/UserDonations';
-import AnimalEdit from './pages/AnimalEdit';
-import Register from './pages/Register';
+import UserProfile from './pages/UserProfile';
+import UserAdoptions from './pages/UserAdoptions';
 import { ProtectedRoute } from './components/access/ProtectedRoute';
 import { AuthProvider } from './hooks/use-auth';
 
@@ -42,14 +45,40 @@ function App() {
               />
               <Route path="/donate" element={<Donations />} />
               <Route path="/donate/payment" element={<DonationNew />} />
-              <Route 
-                path="/user-donations" 
-                element={
-                  <ProtectedRoute allowedRoles={['public', 'staff']}>
-                    <UserDonations />
-                  </ProtectedRoute>
-                }
-              />
+              
+              <Route path="/" element={<ProfileNavigationCard />}>
+
+                <Route 
+                  path="/user-profile" 
+                  element={
+                    <ProtectedRoute allowedRoles={['public']}>
+                      <UserProfile />
+                    </ProtectedRoute>
+                  }
+                />
+                
+                <Route 
+                  path="/user-adoptions" 
+                  element={
+                    <ProtectedRoute allowedRoles={['public']}>
+                      <UserAdoptions />
+                    </ProtectedRoute>
+                  }
+                />
+                
+                <Route 
+                  path="/user-donations" 
+                  element={
+                    <ProtectedRoute allowedRoles={['public']}>
+                      <UserDonations />
+                    </ProtectedRoute>
+                  }
+                />
+              
+              </Route>
+
+
+              
             </Routes>
           </Layout>
       </Router>
