@@ -91,10 +91,54 @@ const getUserByEmail = async (req, res) => {
     }
 };
 
+const updateUser = async (req, res) => {
+    try {
+        const user = await User.findByPk(req.params.id);
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        const { id, createdAt, updatedAt, ...fieldsToUpdate } = req.body;
+
+        if (fieldsToUpdate.password) {
+            fieldsToUpdate.password = await hashPassword(fieldsToUpdate.password);
+        }
+
+        const updatedUser = await user.update(fieldsToUpdate);
+
+        res.status(200).json(updatedUser);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to update user' });
+    }
+};
+
+
+const deleteUser = async (req, res) => {
+    try {
+        const user = await User.findByPk(req.params.id);
+
+        if (!user) {
+            return res.status(404).send({ error: 'User not found' });
+        }
+
+        await user.destroy();
+
+        res.status(204).send();
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: 'Failed to delete user' });
+    }
+};
+
 module.exports = {
     createUser,
     getUsers,
     getUserById,
     getUserByUsername,
-    getUserByEmail
+    getUserByEmail,
+    updateUser,
+    deleteUser
 };
