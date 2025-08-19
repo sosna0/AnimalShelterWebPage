@@ -4,7 +4,7 @@ import { Container, Row, Col, Card, Spinner, Alert, Button } from 'react-bootstr
 import { format } from 'date-fns';
 import { getAnimalById, deleteAnimal } from '../api/services/animalService';
 import ConfirmationModal from '../components/common/ConfirmationModal';
-import GoBackButton from '../components/common/GoBackButton';
+import PageTitle from '../components/common/PageTitle';
 import { RoleOnly } from '../components/access/RoleOnly';
 import { BACKEND_URL } from '../api';
 
@@ -90,20 +90,11 @@ const AnimalDetails = () => {
 
     return (
         <Container className="py-4">
-            <Row className="mb-4">
-                <Col md={1}>
-                    <GoBackButton 
-                        className="me-3" 
-                        previousPage="/animals"
-                    />
-                </Col>
-                <Col md={10}>
-                    <h1 className="text-center m-0">
-                        Animal Details
-                    </h1>
-                </Col>
-                <Col md={1}></Col>
-            </Row>
+            
+            <PageTitle 
+                title="Animal Details"
+                previousPage="/animals"
+            />
 
             <Card className='mb-4 shadow border'>
                 <Row className="g-0">

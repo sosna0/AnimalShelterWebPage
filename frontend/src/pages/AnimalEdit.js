@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { getAnimalById } from '../api/services/animalService';
 import { RoleOnly } from '../components/access/RoleOnly';
 import AnimalForm from '../components/animals/AnimalForm';
-import GoBackButton from '../components/common/GoBackButton';
+import PageTitle from '../components/common/PageTitle';
 
 const AnimalEdit = () => {
     const navigate = useNavigate();
@@ -35,25 +35,18 @@ const AnimalEdit = () => {
     return (
         <RoleOnly allowedRoles={['staff']}>
             <Container className="py-4">
-                <Row className='mb-4'>
-                    <Col md={1} className="d-flex align-items-center">
-                        <GoBackButton 
-                            className="me-3"
-                            previousPage={`/animals/${id}`}
-                        />
-                    </Col>
-                    <Col md={10}>
-                        <h1 className="text-center m-0">
-                            Edit Animal
-                        </h1>
-                    </Col>
-                    <Col md={1} className="d-flex align-items-center"></Col>          
-                </Row>
+
+                <PageTitle 
+                    title="Edit Animal"
+                    previousPage={`/animals/${id}`}
+                />
+
                 <AnimalForm
                     initialData={animal}
                     submitLabel="Save Changes"
                     onSuccess={() => navigate(`/animals/${id}`)}
                 />
+                
             </Container>
         </RoleOnly>
     );
