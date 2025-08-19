@@ -7,6 +7,8 @@ const cors = require('cors');
 const session = require('express-session');
 const initDatabase = require('./config/dbInit');
 
+require('dotenv').config();
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
@@ -29,24 +31,25 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // CORS setup to allow requests from the frontend
 app.use(cors({
-    origin: 'http://localhost:3000',
-    credentials: true
+		origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+		credentials: true
 }));
 
 // initialize database
 initDatabase();
 
 app.use(session({
-  secret: 'top-secret', //this should be hidden and more complex
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    secure: false,
-    httpOnly: true,
-    maxAge: 24 * 60 * 60 * 1000 // 24 hours
-  }
+	secret: 'top-secret', //this should be hidden and more complex
+	resave: false,
+	saveUninitialized: false,
+	cookie: {
+		secure: false,
+		httpOnly: true,
+		maxAge: 24 * 60 * 60 * 1000 // 24 hours
+	}
 }));
 
+// routes
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter);
@@ -55,21 +58,21 @@ app.use('/api/donations', donationRouter);
 app.use('/api/adoptions', adoptionRouter);
 app.use('/api/volunteers', volunteerRouter);
 
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+	next(createError(404));
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+	
+	// set locals, only providing error in development
+	res.locals.message = err.message;
+	res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+	// render the error page
+	res.status(err.status || 500);
+	res.render('error');
 });
 
 module.exports = app;
