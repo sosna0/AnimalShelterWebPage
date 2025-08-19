@@ -4,6 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { getAnimalById } from '../api/services/animalService';
 import { RoleOnly } from '../components/access/RoleOnly';
 import AnimalForm from '../components/animals/AnimalForm';
+import GoBackButton from '../components/common/GoBackButton';
 
 const AnimalEdit = () => {
     const navigate = useNavigate();
@@ -34,16 +35,25 @@ const AnimalEdit = () => {
     return (
         <RoleOnly allowedRoles={['staff']}>
             <Container className="py-4">
-                <Row>
-                    <Col>
-                        <h1 className="text-center mb-4">Edit Animal</h1>
-                        <AnimalForm
-                            initialData={animal}
-                            submitLabel="Save Changes"
-                            onSuccess={() => navigate(`/animals/${id}`)}
+                <Row className='mb-4'>
+                    <Col md={1} className="d-flex align-items-center">
+                        <GoBackButton 
+                            className="me-3"
+                            previousPage={`/animals/${id}`}
                         />
                     </Col>
+                    <Col md={10}>
+                        <h1 className="text-center m-0">
+                            Edit Animal
+                        </h1>
+                    </Col>
+                    <Col md={1} className="d-flex align-items-center"></Col>          
                 </Row>
+                <AnimalForm
+                    initialData={animal}
+                    submitLabel="Save Changes"
+                    onSuccess={() => navigate(`/animals/${id}`)}
+                />
             </Container>
         </RoleOnly>
     );

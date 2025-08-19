@@ -1,12 +1,24 @@
 import React from "react";
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import AnimalForm from "../components/animals/AnimalForm";
+import GoBackButton from "../components/common/GoBackButton";
 
 const AnimalNew = () => {
 
     return (
         <Container className="py-4">
-            <h1 className="text-center mb-4">Add New Animal</h1>
+            <Row className="mb-4">
+                <Col md={1}>
+                    <GoBackButton 
+                        className="me-3" 
+                        previousPage="/animals"
+                    />
+                </Col>
+                <Col md={10}>
+                    <h1 className="text-center m-0">Add New Animal</h1>
+                </Col>
+                <Col md={1}></Col>
+            </Row>
             <AnimalForm submitLabel="Add Animal" />
         </Container>
     );

@@ -91,14 +91,14 @@ const AnimalDetails = () => {
     return (
         <Container className="py-4">
             <Row className="mb-4">
-                <Col md={1} className="d-flex align-items-center">
+                <Col md={1}>
                     <GoBackButton 
                         className="me-3" 
                         previousPage="/animals"
                     />
                 </Col>
-                <Col md={10} className="text-center">
-                    <h1 className="m-0">
+                <Col md={10}>
+                    <h1 className="text-center m-0">
                         Animal Details
                     </h1>
                 </Col>

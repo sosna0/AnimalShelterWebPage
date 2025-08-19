@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Container, Row, Col, Spinner, Alert, Button } from 'react-bootstrap';
+import { Container, Row, Col, Spinner, Alert } from 'react-bootstrap';
 import { getAnimals, getAnimalsByFilters } from "../api/services/animalService";
 import { RoleOnly } from "../components/access/RoleOnly";
 import AnimalCard from "../components/animals/AnimalCard";
 import SearchFilterBar from "../components/animals/SearchFilterBar";
+import FloatingButton from "../components/common/FloatingButton";
 
 const Animals = () => {
     const [animals, setAnimals] = useState([]); // loaded animals state
@@ -71,7 +71,7 @@ const Animals = () => {
                 initialFilters={activeFilters}
             />
             {animals.length > 0 ? (
-                <Row xs={1} md={2}>
+                <Row md={1} lg={2}>
                     {animals.map((animal) => (
                         <Col key={animal.id}>
                             <AnimalCard animal={animal} />
@@ -87,26 +87,14 @@ const Animals = () => {
             )}
             
             <RoleOnly allowedRoles={['staff']}>
-                <Button
-                    as={Link}
-                    to="/animals/new"
-                    variant="primary"
-                    className="position-fixed"
-                    style={{
-                        bottom: '2rem',
-                        right: '2rem',
-                        width: '60px',
-                        height: '60px',
-                        borderRadius: '50%',
-                        fontSize: '24px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
-                        zIndex: 1000
-                    }}>
-                    +
-                </Button>
+                <FloatingButton 
+                    to="/animals/new" 
+                    title="Add new animal"
+                    bottom="2rem"
+                    right="2rem"
+                    >
+                        +
+                    </FloatingButton>
             </RoleOnly>
         </Container>
     );
