@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
 import { getUserByUsername, getUserByEmail } from "../api/services/userService";
@@ -18,7 +18,7 @@ const Register = () => {
 
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const checkUsername = async () => {
+    const checkUsername = useCallback( async () => {
         if (!username) {
             setUsernameTaken(false);
             return;
@@ -29,9 +29,9 @@ const Register = () => {
         } catch (err) {
             setUsernameTaken(false); // user nie istnieje (404)
         }
-    };
-    
-    const checkEmail = async () => {
+    }, [username]);
+
+    const checkEmail = useCallback( async () => {
         if (!email) {
             setEmailTaken(false);
             return;
@@ -42,7 +42,7 @@ const Register = () => {
         } catch (err) {
             setEmailTaken(false); // email wolny
         }
-    };    
+    }, [email]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -63,12 +63,12 @@ const Register = () => {
     useEffect(() => {
         const timer = setTimeout(() => checkUsername(), 500);
         return () => clearTimeout(timer);
-    }, [username]);
+    }, [checkUsername]);
 
     useEffect(() => {
         const timer = setTimeout(() => checkEmail(), 500);
         return () => clearTimeout(timer);
-    }, [email]);
+    }, [checkEmail]);
 
     const isFormInvalid =
         !name || !surname || !username || !email || !password || usernameTaken || emailTaken;
