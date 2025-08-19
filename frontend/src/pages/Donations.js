@@ -171,8 +171,6 @@ const Donations = () => {
             </Row>  
         </Container>
     );
-
-
 }
 
 export default Donations;

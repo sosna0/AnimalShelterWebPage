@@ -74,7 +74,6 @@ const getDonationsByUserId = async (req, res) => {
     }
 };
 
-//TODO: czy to ma sens? Staff chyba powinien zmieniać tylko status płatności
 const updateDonation = async (req, res) => {
     try {
         const donation = await Donation.findByPk(req.params.id);
@@ -110,7 +109,6 @@ const deleteDonation = async (req, res) => {
         res.status(500).send({ error: 'Failed to delete donation' });
     }
 };
-
 
 module.exports = {
     createDonation,

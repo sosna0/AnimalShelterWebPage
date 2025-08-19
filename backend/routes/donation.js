@@ -10,5 +10,4 @@ router.get('/user/:userId', donationController.getDonationsByUserId);
 router.put('/:id', isStaff, donationController.updateDonation);
 router.delete('/:id', donationController.deleteDonation);
 
-
 module.exports = router;

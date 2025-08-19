@@ -1,7 +1,6 @@
 const bcrypt = require('bcrypt');
 const User = require('../models/userModel');
 
-
 const registerUser = async (req, res) => {
     const { 
         name,
@@ -12,7 +11,7 @@ const registerUser = async (req, res) => {
         role = 'public'
      } = req.body;
     
-    // Check if user already exists
+    // check if user already exists
     const existingUser = await User.findOne({
         where: {
             email: email,
@@ -53,12 +52,11 @@ const registerUser = async (req, res) => {
     }
 };
 
-
 const loginUser = async (req, res) => {
     const { username, password } = req.body;
 
     try {
-        // Find user by name
+        // find user by name
         const user = await User.findOne({
             where: {
                 username: username
@@ -69,7 +67,7 @@ const loginUser = async (req, res) => {
             return res.status(400).send('Invalid credentials');
         }
 
-        // Check if the password is valid
+        // check if the password is valid
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
             return res.status(400).send('Invalid credentials');
@@ -89,7 +87,6 @@ const loginUser = async (req, res) => {
     }
 };
 
-// Probably it will be enough for correct logout
 const logoutUser = async (req, res) => {
     delete req.session.userId;
     res.status(200).send('Logout successful');
@@ -101,7 +98,7 @@ const getCurrentUser = async (req, res) => {
     }
 
     const user = await User.findByPk(req.session.userId, {
-        attributes: { exclude: ['password'] } // Exclude password from the response
+        attributes: { exclude: ['password'] } // exclude password from the response
     });
 
     if (!user) {

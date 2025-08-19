@@ -132,7 +132,6 @@ const deleteAdoption = async (req, res) => {
     }
 };
 
-
 module.exports = {
     CreateAdoption,
     getAdoptions,

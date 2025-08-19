@@ -10,4 +10,3 @@ export const getVolunteerById = async (id) => {
     const response = await axios.get(endpoints.volunteers.getById(id));
     return response.data;
 };
-

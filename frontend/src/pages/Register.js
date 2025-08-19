@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
 import { getUserByUsername, getUserByEmail } from "../api/services/userService";
 
-
 const Register = () => {
     const { register } = useAuth();
     const navigate = useNavigate();

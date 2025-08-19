@@ -1,6 +1,5 @@
 import { Card } from 'react-bootstrap';
 
-
 const DonationCard = ({ donation }) => {
     return (
         <Card className="mb-5"

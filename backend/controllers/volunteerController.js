@@ -1,6 +1,5 @@
 const Volunteer = require('../models/volunteerModel.js');
 
-
 const createVolunteer = async (req, res) => {
     const { 
         userId,
@@ -77,7 +76,6 @@ const getVolunteersByUserId = async (req, res) => {
     }
 };
 
-
 const getVolunteersByAnimalId = async (req, res) => {
     try {
         const volunteers = await Volunteer.findAll({
@@ -96,7 +94,6 @@ const getVolunteersByAnimalId = async (req, res) => {
         res.status(500).send({ error: 'Failed to fetch volunteers by animalId' });
     }
 };
-
 
 const updateVolunteer = async (req, res) => {
     try {
@@ -132,7 +129,6 @@ const deleteVolunteer = async (req, res) => {
         res.status(500).send({ error: 'Failed to delete volunteer' });
     }
 };
-
 
 module.exports = {
     createVolunteer,
