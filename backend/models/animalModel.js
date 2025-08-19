@@ -80,9 +80,6 @@ const Animal = sequelize.define('Animal', {
     imageUrl: {
         type: DataTypes.STRING,
         allowNull: true,
-        validate: {
-            isUrl: true
-        }
     },
 
 });

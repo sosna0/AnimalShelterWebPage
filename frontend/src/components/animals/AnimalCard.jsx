@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Card, Row, Col, Button } from 'react-bootstrap';
+import { BACKEND_URL } from '../../api';
 
 const AnimalCard = ({ animal }) => {
     return (
@@ -10,7 +11,7 @@ const AnimalCard = ({ animal }) => {
                 <Col md={6}>
                     {animal.imageUrl ? (
                         <Card.Img 
-                            src={animal.imageUrl}
+                            src={`${BACKEND_URL}${animal.imageUrl}`}
                             alt={animal.name}
                             className="img-fluid rounded-start h-100 object-fit-cover"
                             style={{ objectFit: 'cover', minHeight: '300px' }}

@@ -9,7 +9,6 @@ const createAnimal = async (req, res) => {
         age,
         gender,
         weight,
-        imageUrl,
         adoptionStatus = 'available'
     } = req.body;
 
@@ -21,9 +20,11 @@ const createAnimal = async (req, res) => {
             age,
             gender,
             weight,
-            imageUrl,
             adoptionStatus
         });
+        
+        const imageUrl = `/public/images/animals/animal_${animal.id}.jpg`;
+        await animal.update({ imageUrl });
 
         res.status(201).send(animal);
 

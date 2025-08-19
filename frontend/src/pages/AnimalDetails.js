@@ -6,6 +6,7 @@ import { getAnimalById, deleteAnimal } from '../api/services/animalService';
 import ConfirmationModal from '../components/common/ConfirmationModal';
 import GoBackButton from '../components/common/GoBackButton';
 import { RoleOnly } from '../components/access/RoleOnly';
+import { BACKEND_URL } from '../api';
 
 const AnimalDetails = () => {
     const navigate = useNavigate();
@@ -111,7 +112,7 @@ const AnimalDetails = () => {
                     <Col md={4}>
                         {animal.imageUrl ? (
                             <Card.Img
-                                src={animal.imageUrl}
+                                src={`${BACKEND_URL}${animal.imageUrl}`}
                                 alt={animal.name}
                                 className="img-fluid rounded-start h-100 object-fit-cover"
                                 style={{ objectFit: 'cover', minHeight: '300px' }}
