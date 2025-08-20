@@ -114,6 +114,8 @@ const AnimalForm = ({
     return (
         <Form onSubmit={handleSubmit} noValidate>
 
+            <h5 className="mb-3">Animal Details</h5>
+
             {/* Name */}
             <Form.Group className="mb-3">
                 <Form.Label>Name</Form.Label>
