@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { createAnimal, updateAnimal } from "../../api/services/animalService";
 
 const AnimalForm = ({
-    initialData = { name: '', species: '', age: '', weight: '', gender: '', description: '', longDescription: '', adoptionStatus: '' },
+    initialData = { name: '', species: '', breed: '', age: '', weight: '', gender: '', description: '', longDescription: '', adoptionStatus: '' },
     submitLabel = "Submit",
     onSuccess = null
 }) => {
@@ -28,14 +28,14 @@ const AnimalForm = ({
 
         // age validation
         const age = parseFloat(animal.age);
-        if (!isNaN(age) && (age < 0 || age > 100)) {
-            formErrors.age = "Age must be a number between 0 and 100";
+        if (!isNaN(age) && (age < 0 || age > 1000)) {
+            formErrors.age = "Age must be a number between 0 and 1000";
         }
 
         // weight validation (required and positive)
         const weight = parseFloat(animal.weight);
-        if (!isNaN(weight) && weight <= 0) {
-            formErrors.weight = "Weight must be a positive number";
+        if (!isNaN(weight) && (weight <= 0 || weight > 1000)) {
+            formErrors.weight = "Weight must be a number between 0 and 1000";
         }
 
         // gender validation
@@ -54,11 +54,12 @@ const AnimalForm = ({
     const sanitizeForm = () => {
         const formAnimal = {
             ...animal,
-            name: animal.name.trim(),
+            name: animal.name != null ? animal.name.trim() : '',
+            breed: animal.breed != null ? animal.breed.trim() : '',
             age: parseInt(animal.age),
             weight: parseFloat(animal.weight),
-            description: animal.description.trim(),
-            longDescription: animal.longDescription.trim(),
+            description: animal.description != null ? animal.description.trim() : '',
+            longDescription: animal.longDescription != null ? animal.longDescription.trim() : '',
         };
         
         return formAnimal;
@@ -148,6 +149,22 @@ const AnimalForm = ({
                 </Form.Control.Feedback>
             </Form.Group>
 
+            {/* Breed */}
+            <Form.Group className="mb-3">
+                <Form.Label>Breed</Form.Label>
+                <Form.Control
+                    type="text"
+                    placeholder="Enter breed"
+                    name="breed"
+                    value={animal.breed}
+                    onChange={handleChange}
+                    isInvalid={!!errors.breed}
+                />
+                <Form.Control.Feedback type="invalid">
+                    {errors.breed}
+                </Form.Control.Feedback>
+            </Form.Group>
+
             {/* Age */}
             <Form.Group className="mb-3">
                 <Form.Label>Age</Form.Label>
@@ -158,7 +175,7 @@ const AnimalForm = ({
                     value={animal.age}
                     onChange={handleChange}
                     min="0"
-                    max="100"
+                    max="1000"
                     step="1"
                     isInvalid={!!errors.age}
                 />
@@ -177,6 +194,7 @@ const AnimalForm = ({
                     value={animal.weight}
                     onChange={handleChange}
                     min="0"
+                    max="1000"
                     step="0.1"
                     isInvalid={!!errors.weight}
                 />
