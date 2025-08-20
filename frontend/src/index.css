@@ -75,8 +75,15 @@ html {
 	border-width: 3px;
 	border-style: solid;
 	border-color: rgba(0, 0, 0, 0);
-	background-color: rgba(242, 234, 234, 0.76);
+	
+	/* adjust this color */
+	background-color: rgba(255, 255, 255, 0.65);
+	
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bg-custom {
+	background-color: rgba(242, 234, 234, 0.76);
 }
 
 .btn-custom:hover {

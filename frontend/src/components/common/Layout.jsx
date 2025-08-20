@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
     return (
         <div className="d-flex flex-column min-vh-100">
             <Header />
-            <Container fluid className="p-0 flex-grow-1" style={{ marginTop: '67px' }}>
+            <Container fluid className="p-0 flex-grow-1 bg-custom" style={{ marginTop: '67px' }}>
                 {children}
             </Container>
             <Footer />

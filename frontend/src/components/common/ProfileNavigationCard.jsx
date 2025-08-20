@@ -31,7 +31,7 @@ function ProfileNavigationCard() {
                 </Nav>
             </Card.Header>
             
-            <Card.Body>
+            <Card.Body className="bg-custom">
                 <Outlet />
             </Card.Body>
         </Card>
