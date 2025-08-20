@@ -8,7 +8,8 @@ import AnimalDetails from './pages/AnimalDetails';
 import AnimalNew from './pages/AnimalNew';
 import AnimalEdit from './pages/AnimalEdit';
 import Donations from './pages/Donations';
-import DonationNew from './pages/DonationNew';
+import DonationPayment from './pages/DonationPayment';
+import DonationPaymentProcessing from './pages/DonationPaymentProcessing';
 import ProfileNavigationCard from './components/common/ProfileNavigationCard';
 import UserDonations from './pages/UserDonations';
 import UserProfile from './pages/UserProfile';
@@ -46,7 +47,8 @@ function App() {
 							}
 						/>
 						<Route path="/donate" element={<Donations />} />
-						<Route path="/donate/payment" element={<DonationNew />} />
+						<Route path="/donate/payment" element={<DonationPayment />} />
+						<Route path="/donate/payment/processing" element={<DonationPaymentProcessing />} />
 						<Route path="/adoption/:id" element={<AdoptionNew />} />
 						<Route path="/" element={<ProfileNavigationCard />}>
 							<Route 

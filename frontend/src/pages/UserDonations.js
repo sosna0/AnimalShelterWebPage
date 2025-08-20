@@ -37,7 +37,6 @@ const UserDonations = () => {
                     <Container 
                         className="d-flex flex-column align-items-center justify-content-center custom-container"
                         style={{
-                            // marginTop: '25px', marginBottom: '50px',
                             maxHeight: "auto", maxWidth: "1000px",
                         }}
                     >
@@ -102,16 +101,7 @@ const UserDonations = () => {
                                 </div>
                             </Container>
                         )}
-                        {/* <hr className="hr hr-blurry" 
-                            style={{
-                                width: '100%',
-                                marginTop: '10px',
-                                marginBottom: '10px',
-                                borderColor: 'rgba(0, 0, 0, 0.2)',
-                                borderWidth: '2px',
-                            }}
-                        /> */}
-
+                        
                         <Image
                             src="/images/dog1.svg"
                             alt="Dog Illustration"

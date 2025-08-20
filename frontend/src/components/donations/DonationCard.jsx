@@ -15,7 +15,7 @@ const DonationCard = ({ donation }) => {
                         {new Date(donation.createdAt).toLocaleDateString()}
                     </small>
                 </div>
-                <span className="fw-bold">{donation.amount}$</span>
+                <span className="fw-bold">{Number(donation.amount).toFixed(2)}$</span>
             </Card.Header>
             <Card.Body className="text-start">
                 <Card.Text>

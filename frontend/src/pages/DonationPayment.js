@@ -43,7 +43,7 @@ const DonationNew = () => {
 
         const donation = {
             userId: user ? user.id : null,
-            amount: parseInt(formData.donationAmount),
+            amount: parseFloat(formData.donationAmount),
             nickname: formData.nickname,
             message: formData.message || null,
             paymentStatus: "pending"
@@ -51,21 +51,7 @@ const DonationNew = () => {
 
         try {
             await createDonation(donation);
-
-            // TODO: redirect to ProcessingPayment page
-            switch (formData.paymentMethod) {
-                case "credit_card":
-                    navigate("/payment/credit-card");
-                    break;
-                case "paypal":
-                    navigate("/payment/paypal");
-                    break;
-                case "bank_transfer":
-                    navigate("/payment/bank-transfer");
-                    break;
-                default:
-                    navigate("/donation-success");
-            }
+            navigate("/donate/payment/processing")
         } catch (error) {
             console.error("Error creating donation:", error);
             alert("There was an error creating your donation.");

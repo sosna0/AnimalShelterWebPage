@@ -11,39 +11,36 @@ const Donations = () => {
     const [error, setError] = useState(null); // error state for error messages
     const [amountRaised, setAmountRaised] = useState(0); // total amount raised
 
-    const fetchDonations = async () => {
-
-        setLoading(true);
-        setError(null);
-
-        try {
-            const data = await getDonations();
-            setDonation(data);
-            
-            const amountRaised = data.reduce((total, donation) => total + donation.amount, 0).toFixed();
-            setAmountRaised(amountRaised);
-
-        } catch (err) {
-            setError('Failed to fetch donations. Please try again later.');
-            console.error('Error fetching donations:', err);
-        } finally {
-            setLoading(false);
-        }
-    };
-
     useEffect(() => {
+        const fetchDonations = async () => {
+
+            setLoading(true);
+            setError(null);
+    
+            try {
+                const data = await getDonations();
+                setDonation(data);
+                
+                const amountRaised = data.reduce((total, donation) => total + donation.amount, 0).toFixed(2);
+                setAmountRaised(amountRaised);
+    
+            } catch (err) {
+                setError('Failed to fetch donations. Please try again later.');
+                console.error('Error fetching donations:', err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
         fetchDonations();
     }, []);
 
     return (
         <Container className="container-fluid">
-            <Row xs={1} lg={2} className="align-items-stretch">
-                <Col xs={12} lg={7} className="mt-5 d-flex flex-column" >
+            <Row className="px-4">
+                <Col xs={12} lg={7} className="mt-5 mb-4 mb-lg-5 h-100 align-items-stretch">
                     <Container 
-                        className="py-4 custom-container"
-                        style={{
-                            paddingLeft: '30px', paddingRight: '30px', marginBottom: '25px',
-                        }} 
+                        className="py-4 px-4 mb-4 custom-container"
                     >
                         <h1 className="display-6 text-center fw-bold mt-3">
                             Your Support 
@@ -63,8 +60,8 @@ const Donations = () => {
                             <Button
                                 variant="primary"
                                 type="submit"
-                                className="btn btn-lg btn-primary w-100 d-flex align-items-center justify-content-center btn-custom"
-                                href="/donate/payment"
+                                className="btn btn-lg btn-primary w-100 d-flex align-items-center justify-content-center"
+                                href="/donate/payment/"
                                 style={{ backgroundColor: "rgba(0, 0, 0, 1)" }}
                             >
                                 Donate now
@@ -74,19 +71,13 @@ const Donations = () => {
                     </Container>
 
                     <Container 
-                        style={{
-                            paddingLeft: '30px', paddingRight: '30px',
-                        }} 
-                        className="py-4 mb-lg-5 custom-container"
+                        className="py-4 px-4 custom-container"
                     >
                         <AchievementsCard/>
                     </Container>
                 </Col>
-                <Col xs={12} lg={5} className="mt-lg-4 d-flex flex-column">
+                <Col xs={12} lg={5} className="mt-lg-5 mb-lg-5 h-100 align-items-stretch">
                     <Container 
-                        style={{
-                            paddingLeft: '30px', paddingRight: '30px', marginTop: '25px'
-                        }} 
                         className="py-4 text-center custom-container"
                     >
                         <h2 className="lead">Raised this year:</h2>
@@ -94,10 +85,7 @@ const Donations = () => {
                     </Container>
                     
                     <Container 
-                        className="d-flex flex-column flex-grow-1 custom-container"
-                        style={{
-                            marginTop: '25px', marginBottom: '50px', maxHeight: "auto"
-                        }}
+                        className="custom-container my-4"
                     >
                         <h1 className="text-center mb-4 mt-4">All donations</h1>
 
@@ -114,13 +102,11 @@ const Donations = () => {
                         ) : (
                             <Container 
                                 style={{
-                                    paddingLeft: '30px',
-                                    paddingRight: '30px',
                                     overflowY: 'auto',
-                                    minHeight: 0,
-                                    maxHeight: '80vh',
+                                    minHeight: '95vh',
+                                    maxHeight: '95vh'
                                 }} 
-                                className="py-4 flex-grow-1"
+                                className="py-4 px-4"
                             >
                                 {donations.length > 0 ? (
                                     <Row xs={1} md={1}>
