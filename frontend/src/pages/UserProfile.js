@@ -1,22 +1,61 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Container, Row, Col, Card, Button, Modal, Form, Image } from "react-bootstrap";
-import { updateUser } from "../api/services/userService";
+import { updateUser, getUserByUsername, getUserByEmail } from "../api/services/userService";
 import { useAuth } from "../hooks/use-auth";
 import { BsPencilSquare } from "react-icons/bs";
 
 const UserProfile = () => {
-    const { user: authUser } = useAuth(); // user z kontekstu auth
+    const { user: authUser } = useAuth();
     const [user, setUser] = useState(authUser);
 
     const [showModal, setShowModal] = useState(false);
     const [fieldToEdit, setFieldToEdit] = useState("");
     const [newValue, setNewValue] = useState("");
 
+    const [usernameTaken, setUsernameTaken] = useState(false);
+    const [emailTaken, setEmailTaken] = useState(false);
+
     const handleEditClick = (field) => {
         setFieldToEdit(field);
         setNewValue("");
+        setUsernameTaken(false);
+        setEmailTaken(false);
         setShowModal(true);
     };
+
+    const checkUsername = useCallback(async (value) => {
+        if (!value) {
+            setUsernameTaken(false);
+            return;
+        }
+        try {
+            const existingUser = await getUserByUsername(value);
+            setUsernameTaken(existingUser.id !== user.id);
+        } catch (err) {
+            setUsernameTaken(false); // username wolny
+        }
+    }, [user.id]);
+
+    const checkEmail = useCallback(async (value) => {
+        if (!value) {
+            setEmailTaken(false);
+            return;
+        }
+        try {
+            const existingUser = await getUserByEmail(value);
+            setEmailTaken(existingUser.id !== user.id);
+        } catch (err) {
+            setEmailTaken(false); // email wolny
+        }
+    }, [user.id]);
+
+    useEffect(() => {
+        if (fieldToEdit === "username") checkUsername(newValue);
+    }, [newValue, fieldToEdit, checkUsername]);
+
+    useEffect(() => {
+        if (fieldToEdit === "email") checkEmail(newValue);
+    }, [newValue, fieldToEdit, checkEmail]);
 
     const handleSave = async () => {
         try {
@@ -37,8 +76,6 @@ const UserProfile = () => {
         { key: "password", label: "Password" },
     ];
 
-    //TODO: Add validation for username and email fields
-
     return (
         <Container className="my-4">
             <Row className="justify-content-center">
@@ -58,7 +95,7 @@ const UserProfile = () => {
                                     onClick={() => handleEditClick(field.key)}
                                 >
                                     Edit
-                                <BsPencilSquare className="ms-2"/>
+                                    <BsPencilSquare className="ms-2"/>
                                 </Button>
                             </Card.Body>
                         </Card>
@@ -92,7 +129,18 @@ const UserProfile = () => {
                                 type={fieldToEdit === "password" ? "password" : "text"}
                                 value={newValue}
                                 onChange={(e) => setNewValue(e.target.value)}
+                                isInvalid={(fieldToEdit === "username" && usernameTaken) || (fieldToEdit === "email" && emailTaken)}
                             />
+                            {(fieldToEdit === "username" && usernameTaken) && (
+                                <Form.Control.Feedback type="invalid">
+                                    This username is already taken by another user.
+                                </Form.Control.Feedback>
+                            )}
+                            {(fieldToEdit === "email" && emailTaken) && (
+                                <Form.Control.Feedback type="invalid">
+                                    This email is already taken by another user.
+                                </Form.Control.Feedback>
+                            )}
                         </Form.Group>
                     </Form>
                 </Modal.Body>
@@ -100,7 +148,15 @@ const UserProfile = () => {
                     <Button variant="secondary" onClick={() => setShowModal(false)}>
                         Cancel
                     </Button>
-                    <Button variant="primary" onClick={handleSave} disabled={!newValue}>
+                    <Button 
+                        variant="primary" 
+                        onClick={handleSave} 
+                        disabled={
+                            !newValue || 
+                            (fieldToEdit === "username" && usernameTaken) || 
+                            (fieldToEdit === "email" && emailTaken)
+                        }
+                    >
                         Save
                     </Button>
                 </Modal.Footer>
