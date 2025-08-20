@@ -7,7 +7,7 @@ const DonationCard = ({ donation }) => {
                 borderRadius: '20px',
             }}
         >
-            <Card.Header className="d-flex justify-content-between py-3">
+            <Card.Header className="d-flex justify-content-between py-3 text-start">
                 <div>
                     <span className="fw-bold">{donation.nickname}</span>
                     <br />
@@ -17,7 +17,7 @@ const DonationCard = ({ donation }) => {
                 </div>
                 <span className="fw-bold">{donation.amount}$</span>
             </Card.Header>
-            <Card.Body>
+            <Card.Body className="text-start">
                 <Card.Text>
                     {donation.message || ''}
                 </Card.Text>
