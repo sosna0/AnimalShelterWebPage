@@ -97,6 +97,7 @@ ${formData.additionalInfo}`.trim();
                     value={formData.personalInfo}
                     onChange={handleInputChange}
                     rows={1}
+                    style={{ maxHeight: '100px' }}
                     placeholder="Full name, age, occupation, contact details..."
                 />
             </Form.Group>
@@ -110,6 +111,7 @@ ${formData.additionalInfo}`.trim();
                     value={formData.livingConditions}
                     onChange={handleInputChange}
                     rows={1}
+                    style={{ maxHeight: '100px' }}
                     placeholder="Type of residence, household members, outdoor space..."
                 />
             </Form.Group>
@@ -123,6 +125,7 @@ ${formData.additionalInfo}`.trim();
                     value={formData.petExperience}
                     onChange={handleInputChange}
                     rows={1}
+                    style={{ maxHeight: '100px' }}
                     placeholder="Current/previous pets, animal care experience..."
                 />
             </Form.Group>
@@ -136,6 +139,7 @@ ${formData.additionalInfo}`.trim();
                     value={formData.lifestyle}
                     onChange={handleInputChange}
                     rows={1}
+                    style={{ maxHeight: '100px' }}
                     placeholder="Daily schedule, exercise plans, long-term commitment..."
                 />
             </Form.Group>
@@ -149,12 +153,13 @@ ${formData.additionalInfo}`.trim();
                     value={formData.additionalInfo}
                     onChange={handleInputChange}
                     rows={1}
+                    style={{ maxHeight: '100px' }}
                     placeholder="Any other relevant information..."
                 />
             </Form.Group>
 
             {error && (
-                <Alert variant="danger" className="mb-4">
+                <Alert variant="danger" className="my-3">
                     {error}
                 </Alert>
             )}
