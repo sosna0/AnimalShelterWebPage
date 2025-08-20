@@ -98,7 +98,6 @@ ${formData.additionalInfo}`.trim();
                     onChange={handleInputChange}
                     rows={1}
                     style={{ maxHeight: '100px' }}
-                    placeholder="Full name, age, occupation, contact details..."
                 />
             </Form.Group>
 
@@ -112,7 +111,6 @@ ${formData.additionalInfo}`.trim();
                     onChange={handleInputChange}
                     rows={1}
                     style={{ maxHeight: '100px' }}
-                    placeholder="Type of residence, household members, outdoor space..."
                 />
             </Form.Group>
 
@@ -126,7 +124,6 @@ ${formData.additionalInfo}`.trim();
                     onChange={handleInputChange}
                     rows={1}
                     style={{ maxHeight: '100px' }}
-                    placeholder="Current/previous pets, animal care experience..."
                 />
             </Form.Group>
 
@@ -140,7 +137,6 @@ ${formData.additionalInfo}`.trim();
                     onChange={handleInputChange}
                     rows={1}
                     style={{ maxHeight: '100px' }}
-                    placeholder="Daily schedule, exercise plans, long-term commitment..."
                 />
             </Form.Group>
 
@@ -154,7 +150,6 @@ ${formData.additionalInfo}`.trim();
                     onChange={handleInputChange}
                     rows={1}
                     style={{ maxHeight: '100px' }}
-                    placeholder="Any other relevant information..."
                 />
             </Form.Group>
 
