@@ -16,7 +16,7 @@ const Donation = sequelize.define('Donation', {
     },
 
     amount:{
-        type: DataTypes.INTEGER,
+        type: DataTypes.FLOAT,
         allowNull: false,
         validate: {
             min: 0
