@@ -42,12 +42,17 @@ const Animal = sequelize.define('Animal', {
         }
     },
 
+    breed: {
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
+
     age: {
         type: DataTypes.INTEGER,
         allowNull: true,
         validate: {
             min: 0,
-            max: 100
+            max: 1000
         }
     },
 
@@ -64,7 +69,7 @@ const Animal = sequelize.define('Animal', {
         allowNull: true,
         validate: {
             min: 0,
-            max: 100,
+            max: 1000,
             isFloat: true
         }
     },

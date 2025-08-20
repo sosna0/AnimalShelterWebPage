@@ -4,8 +4,10 @@ const Animal = require('../models/animalModel');
 const createAnimal = async (req, res) => {
     const { 
         name, 
-        description, 
+        description,
+        longDescription,
         species,
+        breed,
         age,
         gender,
         weight,
@@ -16,14 +18,16 @@ const createAnimal = async (req, res) => {
         const animal = await Animal.create({
             name,
             description,
+            longDescription,
             species,
+            breed,
             age,
             gender,
             weight,
             adoptionStatus
         });
         
-        const imageUrl = `/public/images/animals/animal_${animal.id}.jpg`;
+        const imageUrl = `/images/animals/animal_${animal.id}.jpg`;
         await animal.update({ imageUrl });
 
         res.status(201).send(animal);
