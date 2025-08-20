@@ -6,7 +6,7 @@ import { getAnimalById, deleteAnimal } from '../api/services/animalService';
 import ConfirmationModal from '../components/common/ConfirmationModal';
 import PageTitle from '../components/common/PageTitle';
 import { RoleOnly } from '../components/access/RoleOnly';
-import { BACKEND_URL } from '../api';
+import AnimalImage from '../components/animals/AnimalImage';
 
 const AnimalDetails = () => {
     const navigate = useNavigate();
@@ -101,21 +101,7 @@ const AnimalDetails = () => {
 
                     {/* Image section - left side */}
                     <Col md={4}>
-                        {animal.imageUrl ? (
-                            <Card.Img
-                                src={`${BACKEND_URL}${animal.imageUrl}`}
-                                alt={animal.name}
-                                className="img-fluid rounded-start h-100 object-fit-cover"
-                                style={{ objectFit: 'cover', minHeight: '300px' }}
-                            />
-                        ) : (
-                            <div 
-                                className="bg-light d-flex align-items-center justify-content-center h-100 rounded-start"
-                                style={{ minHeight: '300px' }}
-                            >
-                                <span className="text-muted">No image available</span>
-                            </div>
-                        )}
+                        <AnimalImage src={animal.imageUrl} alt={animal.name} minHeight={300} />
                     </Col>
 
                     {/* Content section - right side */}

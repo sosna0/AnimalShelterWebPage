@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Card, Row, Col, Button } from 'react-bootstrap';
-import { BACKEND_URL } from '../../api';
+import AnimalImage from './AnimalImage';
 
 const AnimalCard = ({ animal }) => {
     return (
@@ -9,21 +9,7 @@ const AnimalCard = ({ animal }) => {
 
                 {/* Image section - left side */}
                 <Col md={6}>
-                    {animal.imageUrl ? (
-                        <Card.Img 
-                            src={`${BACKEND_URL}${animal.imageUrl}`}
-                            alt={animal.name}
-                            className="img-fluid rounded-start h-100 object-fit-cover"
-                            style={{ objectFit: 'cover', minHeight: '300px' }}
-                        />
-                    ) : (
-                        <div 
-                            className="bg-light d-flex align-items-center justify-content-center h-100 rounded-start"
-                            style={{ minHeight: '300px' }}
-                        >
-                            <span className="text-muted">No image available</span>
-                        </div>
-                    )}
+                    <AnimalImage src={animal.imageUrl} alt={animal.name} minHeight={300} />
                 </Col>
 
                 {/* Content section - right side */}
@@ -31,9 +17,9 @@ const AnimalCard = ({ animal }) => {
                     <Card.Body className="d-flex flex-column h-100">
                         <div className="flex-grow-1">
                             <Card.Title as="h2" className="mb-3">{animal.name}</Card.Title>
-                            <p className="mb-1"><strong>Age:</strong> {animal.age} years</p>
-                            <p className="mb-1"><strong>Gender:</strong> {animal.gender}</p>
-                            {animal.weight && <p className="mb-1"><strong>Weight:</strong> {animal.weight} kg</p>}
+                            {animal.species && <p className="mb-1"><strong>Species:</strong> {animal.species}</p>}
+                            {animal.breed && <p className="mb-1"><strong>Breed:</strong> {animal.breed}</p>}
+                            {animal.gender && <p className="mb-1"><strong>Gender:</strong> {animal.gender}</p>}
                             {animal.description && <p className="mt-3 text-muted">{animal.description}</p>}
                         </div>
                         
