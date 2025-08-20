@@ -1,8 +1,6 @@
 const User = require('../models/userModel.js');
+const bcrypt = require('bcrypt');
 
-//TODO: update and delete?
-
-// w sumie to nie wiem, czy to jest potrzebne, skoro mam authController
 const createUser = async (req, res) => {
     const { 
         name,
@@ -91,6 +89,7 @@ const getUserByEmail = async (req, res) => {
     }
 };
 
+
 const updateUser = async (req, res) => {
     try {
         const user = await User.findByPk(req.params.id);
@@ -102,7 +101,8 @@ const updateUser = async (req, res) => {
         const { id, createdAt, updatedAt, ...fieldsToUpdate } = req.body;
 
         if (fieldsToUpdate.password) {
-            fieldsToUpdate.password = await hashPassword(fieldsToUpdate.password);
+            const hashedPassword = await bcrypt.hash(fieldsToUpdate.password, 10);
+            fieldsToUpdate.password = hashedPassword;
         }
 
         const updatedUser = await user.update(fieldsToUpdate);
@@ -113,6 +113,7 @@ const updateUser = async (req, res) => {
         res.status(500).json({ error: 'Failed to update user' });
     }
 };
+
 
 
 const deleteUser = async (req, res) => {
