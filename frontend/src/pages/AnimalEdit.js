@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Container } from 'react-bootstrap';
+import { Container, Card } from 'react-bootstrap';
 import { getAnimalById } from '../api/services/animalService';
 import { RoleOnly } from '../components/access/RoleOnly';
 import AnimalForm from '../components/animals/AnimalForm';
@@ -9,7 +9,7 @@ import PageTitle from '../components/common/PageTitle';
 const AnimalEdit = () => {
     const navigate = useNavigate();
     const { id } = useParams();
-    const [animal, setAnimal] = useState([]);
+    const [animal, setAnimal] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -41,11 +41,15 @@ const AnimalEdit = () => {
                     previousPage={`/animals/${id}`}
                 />
 
-                <AnimalForm
-                    initialData={animal}
-                    submitLabel="Save Changes"
-                    onSuccess={() => navigate(`/animals/${id}`)}
-                />
+                <Card className="border shadow">
+                    <Card.Body>
+                        <AnimalForm
+                            initialData={animal}
+                            submitLabel="Save Changes"
+                            onSuccess={() => navigate(`/animals/${id}`)}
+                        />
+                    </Card.Body>
+                </Card>
                 
             </Container>
         </RoleOnly>

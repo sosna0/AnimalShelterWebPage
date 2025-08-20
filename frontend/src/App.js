@@ -13,6 +13,7 @@ import ProfileNavigationCard from './components/common/ProfileNavigationCard';
 import UserDonations from './pages/UserDonations';
 import UserProfile from './pages/UserProfile';
 import UserAdoptions from './pages/UserAdoptions';
+import AdoptionNew from './pages/AdoptionNew';
 import { ProtectedRoute } from './components/access/ProtectedRoute';
 import { AuthProvider } from './hooks/use-auth';
 
@@ -45,6 +46,7 @@ function App() {
 						/>
 						<Route path="/donate" element={<Donations />} />
 						<Route path="/donate/payment" element={<DonationNew />} />
+						<Route path="/adoption/:id" element={<AdoptionNew />} />
 						<Route path="/" element={<ProfileNavigationCard />}>
 							<Route 
 								path="/user-profile" 

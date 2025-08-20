@@ -4,14 +4,16 @@ const CreateAdoption = async (req, res) => {
     const {
         userId,
         animalId,
-        status = 'pending'
+        survey,
+        status = 'Pending'
     } = req.body;
 
     try {
         const adoption = await Adoption.create({
-            userId: userId,
-            animalId: animalId,
-            status: status
+            userId,
+            animalId,
+            survey,
+            status
         });
 
         res.status(201).send(adoption);

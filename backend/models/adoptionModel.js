@@ -21,12 +21,29 @@ const Adoption = sequelize.define('Adoption', {
         allowNull: false,
     },
 
+    survey:{
+        type: DataTypes.TEXT,
+        allowNull: false,
+        validate: {
+            notEmpty: true,
+            len: [1, 2000]
+        }
+    },
+
+    response:{
+        type: DataTypes.TEXT,
+        allowNull: true,
+        validate: {
+            len: [1, 2000]
+        }
+    },
+
     status:{
-        type: DataTypes.ENUM('Pending', 'Approved', 'Rejected'),
+        type: DataTypes.ENUM('Pending', 'OnHold', 'Approved', 'Rejected'),
         allowNull: false,
         defaultValue: 'Pending',
         validate: {
-            isIn: [['Pending', 'Approved', 'Rejected']]
+            isIn: [['Pending', 'OnHold', 'Approved', 'Rejected']]
         }
     },    
 
