@@ -40,15 +40,10 @@ const Donations = () => {
             <Row xs={1} lg={2} className="align-items-stretch">
                 <Col xs={12} lg={7} className="mt-5 d-flex flex-column" >
                     <Container 
+                        className="py-4 custom-container"
                         style={{
-                            paddingLeft: '30px', paddingRight: '30px', 
-                            borderRadius: '10px', borderWidth: "3px", borderStyle: "solid",                                       
-                            borderColor: "rgba(0, 0, 0, 0)",
-                            backgroundColor: "rgba(242, 234, 234, 0.76)",
-                            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                            marginBottom: '25px',
+                            paddingLeft: '30px', paddingRight: '30px', marginBottom: '25px',
                         }} 
-                        className="py-4"
                     >
                         <h1 className="display-6 text-center fw-bold mt-3">
                             Your Support 
@@ -68,7 +63,7 @@ const Donations = () => {
                             <Button
                                 variant="primary"
                                 type="submit"
-                                className="btn btn-lg btn-primary w-100 d-flex align-items-center justify-content-center"
+                                className="btn btn-lg btn-primary w-100 d-flex align-items-center justify-content-center btn-custom"
                                 href="/donate/payment"
                                 style={{ backgroundColor: "rgba(0, 0, 0, 1)" }}
                             >
@@ -81,12 +76,8 @@ const Donations = () => {
                     <Container 
                         style={{
                             paddingLeft: '30px', paddingRight: '30px',
-                            borderRadius: '10px', borderWidth: "3px", borderStyle: "solid",
-                            borderColor: "rgba(0, 0, 0, 0)",
-                            backgroundColor: "rgba(242, 234, 234, 0.76)",
-                            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
                         }} 
-                        className="py-4 mb-lg-5"
+                        className="py-4 mb-lg-5 custom-container"
                     >
                         <AchievementsCard/>
                     </Container>
@@ -94,28 +85,18 @@ const Donations = () => {
                 <Col xs={12} lg={5} className="mt-lg-4 d-flex flex-column">
                     <Container 
                         style={{
-                            paddingLeft: '30px', paddingRight: '30px', 
-                            borderRadius: '10px', borderWidth: "3px", borderStyle: "solid",                                       
-                            borderColor: "rgba(0, 0, 0, 0)",
-                            backgroundColor: "rgba(242, 234, 234, 0.76)",
-                            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                            marginTop: '25px'
+                            paddingLeft: '30px', paddingRight: '30px', marginTop: '25px'
                         }} 
-                        className="py-4 text-center"
+                        className="py-4 text-center custom-container"
                     >
                         <h2 className="lead">Raised this year:</h2>
                         <h1 className="display-6 fw-bold">{amountRaised}$</h1>
                     </Container>
                     
                     <Container 
-                        className="d-flex flex-column flex-grow-1"
+                        className="d-flex flex-column flex-grow-1 custom-container"
                         style={{
-                            borderRadius: '10px', borderWidth: "3px", borderStyle: "solid",
-                            borderColor: "rgba(0, 0, 0, 0)", 
-                            backgroundColor: "rgba(242, 234, 234, 0.76)",
-                            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                            marginTop: '25px', marginBottom: '50px',
-                            maxHeight: "auto"
+                            marginTop: '25px', marginBottom: '50px', maxHeight: "auto"
                         }}
                     >
                         <h1 className="text-center mb-4 mt-4">All donations</h1>
@@ -137,7 +118,7 @@ const Donations = () => {
                                     paddingRight: '30px',
                                     overflowY: 'auto',
                                     minHeight: 0,
-                                    maxHeight: '100vh',
+                                    maxHeight: '80vh',
                                 }} 
                                 className="py-4 flex-grow-1"
                             >

@@ -8,8 +8,7 @@ body {
 }
 
 code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-		monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 html {
@@ -69,4 +68,17 @@ html {
 
 .nav-link.dropdown-item-logout:hover {
 	color: #941009 !important;
+}
+
+.custom-container {
+	border-radius: 10px;
+	border-width: 3px;
+	border-style: solid;
+	border-color: rgba(0, 0, 0, 0);
+	background-color: rgba(242, 234, 234, 0.76);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-custom:hover {
+	background-color: rgb(86, 85, 85);
 }
