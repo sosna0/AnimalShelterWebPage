@@ -199,7 +199,7 @@ const DonationNew = () => {
                                     placeholder="123456789"
                                     value={formData.phoneNumber}
                                     onChange={(e) => handleChange("phoneNumber", e.target.value)}
-                                    pattern="[0-9]"
+                                    pattern="[0-9]{9,15}"
                                     inputMode="numeric"
                                     minLength={9}
                                     required
