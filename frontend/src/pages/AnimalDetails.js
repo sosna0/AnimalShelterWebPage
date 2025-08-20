@@ -6,12 +6,14 @@ import { getAnimalById, deleteAnimal } from '../api/services/animalService';
 import ConfirmationModal from '../components/common/ConfirmationModal';
 import PageTitle from '../components/common/PageTitle';
 import { RoleOnly } from '../components/access/RoleOnly';
+import { useAuth } from '../hooks/use-auth';
 import AnimalImage from '../components/animals/AnimalImage';
 
 const AnimalDetails = () => {
     const navigate = useNavigate();
     const { id } = useParams(); // animal ID from the URL
-    
+    const { user } = useAuth(); // current user from auth context to disable adopt button
+
     const [animal, setAnimal] = useState([]); // state to hold animal details
     const [loading, setLoading] = useState(true); // loading state for spinner
     const [error, setError] = useState(null); // error state for error messages
@@ -58,11 +60,6 @@ const AnimalDetails = () => {
     // function to handle adoption button click
     const handleAdopt = () => {
         navigate(`/adoption/${id}`);
-    };
-
-    // function to handle donation button click
-    const handleDonate = () => {
-        navigate(`/donate?animalId=${id}`);
     };
 
     // render loading spinner if data is being fetched
@@ -134,21 +131,19 @@ const AnimalDetails = () => {
                             </Row>
 
                             {/* Buttons section */}
-                            <div className="d-flex gap-3">
+                            <div className="d-flex align-items-center gap-3">
                                 <RoleOnly allowedRoles={['guest', 'public']}>
                                     <Button 
                                         variant="primary" 
                                         onClick={handleAdopt}
-                                        disabled={animal.adoptionStatus !== 'Available'}
+                                        disabled={animal.adoptionStatus !== 'Available' || !user}
                                     >
                                         Adopt
                                     </Button>
-                                    <Button 
-                                        variant="outline-primary" 
-                                        onClick={handleDonate}
-                                    >
-                                        Donate
-                                    </Button>
+                                </RoleOnly>
+
+                                <RoleOnly allowedRoles={['guest']}>
+                                    <span className='text-danger'>You must be logged in to adopt an animal.</span>
                                 </RoleOnly>
 
                                 <RoleOnly allowedRoles={['staff']}>
@@ -165,6 +160,7 @@ const AnimalDetails = () => {
                                         Delete
                                     </Button>
                                 </RoleOnly>
+
                             </div>
                         </Card.Body>
                     </Col>
