@@ -115,7 +115,6 @@ const SearchFilterBar = ({ onFilterChange, initialFilters }) => {
                         <option value="">Any Status</option>
                         <option value="Unavailable">Unavailable</option>
                         <option value="Available">Available</option>
-                        <option value="Pending">Pending</option>
                         <option value="Adopted">Adopted</option>
                     </Form.Select>
                 </Col>
