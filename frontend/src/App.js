@@ -14,6 +14,7 @@ import UserDonations from './pages/UserDonations';
 import UserProfile from './pages/UserProfile';
 import UserAdoptions from './pages/UserAdoptions';
 import AdoptionNew from './pages/AdoptionNew';
+import ManageAdoptions from './pages/ManageAdoptions';
 import { ProtectedRoute } from './components/access/ProtectedRoute';
 import { AuthProvider } from './hooks/use-auth';
 
@@ -51,7 +52,7 @@ function App() {
 							<Route 
 								path="/user-profile" 
 								element={
-									<ProtectedRoute allowedRoles={['public']}>
+									<ProtectedRoute allowedRoles={['public', 'staff']}>
 										<UserProfile />
 									</ProtectedRoute>
 								}
@@ -61,6 +62,14 @@ function App() {
 								element={
 									<ProtectedRoute allowedRoles={['public']}>
 										<UserAdoptions />
+									</ProtectedRoute>
+								}
+							/>
+							<Route 
+								path="/manage-adoptions" 
+								element={
+									<ProtectedRoute allowedRoles={['staff']}>
+										<ManageAdoptions />
 									</ProtectedRoute>
 								}
 							/>

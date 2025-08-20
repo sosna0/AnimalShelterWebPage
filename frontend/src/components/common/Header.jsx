@@ -75,7 +75,7 @@ const Header = () => {
                         {/* TODO: add more options for staff only */}
                         <RoleOnly allowedRoles={["staff"]}>
                             <ProfileDropdown 
-                                dropdownPaths={["/user-profile", "/user-adoptions"]} 
+                                dropdownPaths={["/user-profile", "/manage-adoptions"]} 
                                 dropdownDescr={["View Profile", "Manage adoptions"]}
                             />
                         </RoleOnly>
