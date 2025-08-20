@@ -71,7 +71,7 @@ const Animals = () => {
                 initialFilters={activeFilters}
             />
             {animals.length > 0 ? (
-                <Row xs={1} lg={2}>
+                <Row xs={1} lg={2} className="g-4">
                     {animals.map((animal) => (
                         <Col key={animal.id}>
                             <AnimalCard animal={animal} />

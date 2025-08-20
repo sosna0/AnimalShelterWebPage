@@ -4,7 +4,7 @@ import AnimalImage from './AnimalImage';
 
 const AnimalCard = ({ animal }) => {
     return (
-        <Card className="mb-4 shadow border">
+        <Card className="h-100 shadow border">
             <Row className="g-0">
 
                 {/* Image section - left side */}
