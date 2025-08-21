@@ -1,6 +1,6 @@
 # AnimalShelterWebPage
 
-AnimalShelterWebPage is an Express.js/React web application for managing animal shelter.
+## AnimalShelterWebPage is an Express.js/React web application for managing animal shelter.
 
 # Functionalities for animal shelter staff:
 
@@ -30,7 +30,7 @@ AnimalShelterWebPage is an Express.js/React web application for managing animal 
 
 ![image](https://github.com/user-attachments/assets/fb1b29b2-d697-4e3e-8e6b-bff1a2fec947)
 
-![image]()
+![image](https://github.com/user-attachments/assets/63520c93-173e-46c3-b6a8-4e4e6c99fd01)
 
 # How to run this app
 
