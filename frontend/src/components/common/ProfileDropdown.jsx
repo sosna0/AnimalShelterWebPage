@@ -40,7 +40,6 @@ const ProfileDropdown = ({dropdownPaths, dropdownDescr}) => {
             <NavDropdown.Item
                 onClick={handleLogout}
                 className="nav-link dropdown-item-logout"
-                // style={{color: "red"}}
             >
                 Logout
             </NavDropdown.Item>

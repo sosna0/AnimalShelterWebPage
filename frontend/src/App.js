@@ -50,6 +50,7 @@ function App() {
 						<Route path="/donate/payment" element={<DonationPayment />} />
 						<Route path="/donate/payment/processing" element={<DonationPaymentProcessing />} />
 						<Route path="/adoption/:id" element={<AdoptionNew />} />
+						
 						<Route path="/" element={<ProfileNavigationCard />}>
 							<Route 
 								path="/user-profile" 
@@ -68,18 +69,18 @@ function App() {
 								}
 							/>
 							<Route 
-								path="/manage-adoptions" 
-								element={
-									<ProtectedRoute allowedRoles={['staff']}>
-										<ManageAdoptions />
-									</ProtectedRoute>
-								}
-							/>
-							<Route 
 								path="/user-donations" 
 								element={
 									<ProtectedRoute allowedRoles={['public']}>
 										<UserDonations />
+									</ProtectedRoute>
+								}
+							/>
+							<Route 
+								path="/manage-adoptions" 
+								element={
+									<ProtectedRoute allowedRoles={['staff']}>
+										<ManageAdoptions />
 									</ProtectedRoute>
 								}
 							/>
