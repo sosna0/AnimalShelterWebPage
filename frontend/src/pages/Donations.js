@@ -60,9 +60,8 @@ const Donations = () => {
                             <Button
                                 variant="primary"
                                 type="submit"
-                                className="btn btn-lg btn-primary w-100 d-flex align-items-center justify-content-center"
+                                className="btn btn-lg btn-primary custom-btn w-100 d-flex align-items-center justify-content-center"
                                 href="/donate/payment/"
-                                style={{ backgroundColor: "rgba(0, 0, 0, 1)" }}
                             >
                                 Donate now
                                 <FaExternalLinkAlt className="ms-2"/>

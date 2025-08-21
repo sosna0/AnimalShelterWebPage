@@ -68,15 +68,15 @@ const DonationNew = () => {
 
             <Card style={{ maxWidth: "600px", width: "100%" }} className="p-4 shadow">
                 <div className="position-relative text-center mb-4">
-                    <button
-                        type="button"
+                    <Button
+                        variant="link"
                         onClick={() => navigate('/donate')}
-                        className="btn btn-link position-absolute start-0 top-0 mt-1 ms-1"
-                        style={{ textDecoration: 'none' }}
+                        className="position-absolute start-0 top-0 mt-1 ms-1 p-0"
+                        style={{ color: "black" }}
                         aria-label="Back to donate page"
                     >
                         <i className="bi bi-arrow-left"></i>
-                    </button>
+                    </Button>
                     <h2 className="m-0">Support our Mission</h2>
                 </div>
 
@@ -227,7 +227,7 @@ const DonationNew = () => {
                     <Button
                         variant="primary"
                         type="submit"
-                        className="w-100"
+                        className="w-100 custom-btn"
                         disabled={isFormInvalid}
                     >
                         Donate
