@@ -6,29 +6,31 @@ AnimalShelterWebPage is an Express.js/React web application for managing animal 
 
 ## 1.Manage animals
 
-
+![image](https://github.com/user-attachments/assets/9e8fdcc6-a78f-4903-a746-31f446d8eebb)
 
 ## 2.Add new animals
 
-
+![image](https://github.com/user-attachments/assets/e29b80a0-8021-4975-b523-dae0aa942abc)
 
 ## 3.Review adoption applications
 
-
+...
 
 # Functionalities for normal user:
 
 ## 1.Search animals:
 
-
+![image](https://github.com/user-attachments/assets/faed2f52-8000-404f-b903-b8504594d387)
 
 ## 2.Create and submit adoption application:
 
-
+![image](https://github.com/user-attachments/assets/d124fc25-5633-4d32-a111-2e3d2ced7d98)
 
 ## 3.Support shelter through donations:
 
+![image](https://github.com/user-attachments/assets/fb1b29b2-d697-4e3e-8e6b-bff1a2fec947)
 
+![image]()
 
 # How to run this app
 
