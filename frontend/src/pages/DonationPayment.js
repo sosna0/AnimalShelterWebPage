@@ -72,7 +72,6 @@ const DonationNew = () => {
                         variant="link"
                         onClick={() => navigate('/donate')}
                         className="position-absolute start-0 top-0 mt-1 ms-1 p-0"
-                        style={{ color: "black" }}
                         aria-label="Back to donate page"
                     >
                         <i className="bi bi-arrow-left"></i>
@@ -227,7 +226,7 @@ const DonationNew = () => {
                     <Button
                         variant="primary"
                         type="submit"
-                        className="w-100 custom-btn"
+                        className="w-100"
                         disabled={isFormInvalid}
                     >
                         Donate
