@@ -6,7 +6,7 @@
 
 ## 1.Manage animals
 
-![image](https://github.com/user-attachments/assets/9e8fdcc6-a78f-4903-a746-31f446d8eebb)
+![image](https://github.com/user-attachments/assets/d3c7c178-b64f-4be2-a8eb-4d4d21600ef9)
 
 ## 2.Add new animals
 
