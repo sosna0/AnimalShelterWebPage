@@ -60,8 +60,8 @@ const Header = () => {
                     <Nav className="ms-auto">
                         <Nav.Link as={NavLink} to="/" end>Home</Nav.Link>
                         <Nav.Link as={NavLink} to="/animals">Our Animals</Nav.Link>
-                        <Nav.Link as={NavLink} to="/findanimal">Find Your Animal</Nav.Link>
-                        <Nav.Link as={NavLink} to="/volunteer">Volunteer</Nav.Link>
+                        {/* <Nav.Link as={NavLink} to="/findanimal">Find Your Animal</Nav.Link>
+                        <Nav.Link as={NavLink} to="/volunteer">Volunteer</Nav.Link> */}
                         <Nav.Link as={NavLink} to="/donate">Donate</Nav.Link>
 
                         
@@ -75,7 +75,7 @@ const Header = () => {
                         {/* TODO: add more options for staff only */}
                         <RoleOnly allowedRoles={["staff"]}>
                             <ProfileDropdown 
-                                dropdownPaths={["/user-profile", "/manage-adoptions"]} 
+                                dropdownPaths={["/user-profile", "/staff-adoptions"]} 
                                 dropdownDescr={["View Profile", "Manage adoptions"]}
                             />
                         </RoleOnly>

@@ -24,7 +24,7 @@ function ProfileNavigationCard() {
 
                     <RoleOnly allowedRoles={['staff']}>
                         <Nav.Item>
-                            <Nav.Link as={NavLink} to="/manage-adoptions">Manage adoptions</Nav.Link>
+                            <Nav.Link as={NavLink} to="/staff-adoptions">Manage All Adoptions</Nav.Link>
                         </Nav.Item>
                     </RoleOnly>
                 
