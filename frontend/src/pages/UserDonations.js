@@ -31,9 +31,9 @@ const UserDonations = () => {
     }, []);
 
     return (
-        <Container className="container-fluid">  
+        <Container className="my-4 container-fluid">  
             <Row className="justify-content-center">
-                <Col className="my-4 d-flex flex-column align-items-center justify-content-center">         
+                <Col className="d-flex flex-column align-items-center justify-content-center">         
                     <Container 
                         className="d-flex flex-column align-items-center justify-content-center custom-container"
                         style={{
@@ -52,7 +52,7 @@ const UserDonations = () => {
                             </Container>
                         ) : donations.length > 0 ? (
                             <>
-                                <h1 className="text-center mb-4 mt-4">Your donations</h1>
+                                <h1 className="text-center mb-4 mt-4">Your Donations</h1>
                                 <Container 
                                     style={{
                                         paddingLeft: '20px',

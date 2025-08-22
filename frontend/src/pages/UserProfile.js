@@ -77,7 +77,7 @@ const UserProfile = () => {
     ];
 
     return (
-        <Container className="my-4">
+        <Container className="my-4 container-fluid">
             <Row className="justify-content-center">
                 <Col xs={10} md={9} lg={7} className="custom-container">
                     {fields.map((field) => (
