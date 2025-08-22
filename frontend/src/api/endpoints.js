@@ -17,6 +17,7 @@ export const endpoints = {
         getById: (id) => `/adoptions/${id}`,
         getByUserId: (userId) => `/adoptions/user/${userId}`,
         getByAnimalId: (animalId) => `/adoptions/animal/${animalId}`,
+        update: (id) => `/adoptions/${id}`,
         updateStatus: (id) => `/adoptions/${id}/status`,
         delete: (id) => `/adoptions/${id}`
     },

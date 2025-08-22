@@ -15,7 +15,8 @@ import UserDonations from './pages/UserDonations';
 import UserProfile from './pages/UserProfile';
 import UserAdoptions from './pages/UserAdoptions';
 import AdoptionNew from './pages/AdoptionNew';
-import ManageAdoptions from './pages/ManageAdoptions';
+import StaffAdoptions from './pages/StaffAdoptions';
+import AdoptionDetails from './pages/AdoptionDetails';
 import { ProtectedRoute } from './components/access/ProtectedRoute';
 import { AuthProvider } from './hooks/use-auth';
 
@@ -25,9 +26,15 @@ function App() {
 			<Router>
 				<Layout>
 					<Routes>
+
+						{/* Home */}
 						<Route path="/" element={<Home />} />
+
+						{/* Auth */}
 						<Route path="/register" element={<Register />} />
 						<Route path="/login" element={<Login />} />
+
+						{/* Animals */}
 						<Route path="/animals" element={<Animals />} />
 						<Route path="/animals/:id" element={<AnimalDetails />} />
 						<Route 
@@ -46,11 +53,31 @@ function App() {
 								</ProtectedRoute>
 							}
 						/>
+
+						{/* Donations */}
 						<Route path="/donate" element={<Donations />} />
 						<Route path="/donate/payment" element={<DonationPayment />} />
 						<Route path="/donate/payment/processing" element={<DonationPaymentProcessing />} />
-						<Route path="/adoption/:id" element={<AdoptionNew />} />
-						
+
+						{/* Adoptions */}
+						<Route 
+							path="/adoptions/:id" 
+							element={
+								<ProtectedRoute allowedRoles={['public', 'staff']}>
+									<AdoptionDetails />
+								</ProtectedRoute>
+							}
+						/>
+						<Route 
+							path="/adoptions/new/:id" 
+							element={
+								<ProtectedRoute allowedRoles={['public', 'staff']}>
+									<AdoptionNew />
+								</ProtectedRoute>
+							}
+						/>
+
+						{/* Profile */}
 						<Route path="/" element={<ProfileNavigationCard />}>
 							<Route 
 								path="/user-profile" 
@@ -77,14 +104,15 @@ function App() {
 								}
 							/>
 							<Route 
-								path="/manage-adoptions" 
+								path="/staff-adoptions" 
 								element={
 									<ProtectedRoute allowedRoles={['staff']}>
-										<ManageAdoptions />
+										<StaffAdoptions />
 									</ProtectedRoute>
 								}
 							/>
 						</Route>
+
 					</Routes>
 				</Layout>
 			</Router>
