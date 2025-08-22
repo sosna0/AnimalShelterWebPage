@@ -15,10 +15,10 @@ function ProfileNavigationCard() {
 
                     <RoleOnly allowedRoles={['public']}>
                         <Nav.Item>
-                            <Nav.Link as={NavLink} to="/user-adoptions">Manage your adoptions</Nav.Link>
+                            <Nav.Link as={NavLink} to="/user-adoptions">Manage Your Adoptions</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link as={NavLink} to="/user-donations">Show your donations</Nav.Link>
+                            <Nav.Link as={NavLink} to="/user-donations">Show Your Donations</Nav.Link>
                         </Nav.Item>
                     </RoleOnly>
 
