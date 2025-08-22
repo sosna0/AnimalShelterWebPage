@@ -48,7 +48,6 @@ const AdoptionForm = ({
         setError('');
 
         try {
-            // Combine all form sections into a formatted survey
             const surveyData = `
 Personal Information:
 ${formData.personalInfo}
