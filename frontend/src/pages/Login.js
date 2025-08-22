@@ -58,7 +58,7 @@ const Login = () => {
                             <Button
                                 variant="primary"
                                 type="submit"
-                                className="w-100 custom-btn"
+                                className="w-100"
                                 disabled={!isFormValid}
                             >
                                 Sign In
