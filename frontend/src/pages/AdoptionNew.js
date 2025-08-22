@@ -2,14 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Container, Row, Col, Card, Spinner, Alert } from 'react-bootstrap';
 import { getAnimalById } from '../api/services/animalService';
+import { getUserAdoptions } from '../api/services/adoptionService';
+import { useAuth } from '../hooks/use-auth';
 import AdoptionForm from '../components/adoptions/AdoptionForm';
 import PageTitle from '../components/common/PageTitle';
 
 const AdoptionNew = () => {
     const navigate = useNavigate();
+    const { user } = useAuth();
     const [animal, setAnimal] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [hasPendingRequest, setHasPendingRequest] = useState(false);
     const { id } = useParams();
 
     useEffect(() => {
@@ -30,6 +34,30 @@ const AdoptionNew = () => {
 
         fetchAnimal();
     }, [id]);
+
+    useEffect(() => {
+        const checkPending = async () => {
+
+            if (!user) {
+                setHasPendingRequest(false);
+                return;
+            }
+
+            try {
+                const adoptions = await getUserAdoptions(user.id);
+                const hasPending = adoptions.some(a => a.animalId === parseInt(id, 10) && a.status === 'Pending');
+                
+                setHasPendingRequest(hasPending);
+
+            } catch (err) {
+                setHasPendingRequest(false);
+                console.error('Failed to fetch user adoptions', err);
+            }
+        };
+
+        checkPending();
+        
+    }, [user, id]);
 
     if (loading) {
         return (
@@ -64,10 +92,14 @@ const AdoptionNew = () => {
             <Row className="g-4">
 
                 {/* Adoption Form - left side */}
-                <Col xs={12} lg={8}>
+                    <Col xs={12} lg={8}>
                     <Card className="h-100 border shadow">
                         <Card.Body>
-                            <AdoptionForm animal={animal} onSuccess={() => navigate(-1)} onCancel={() => navigate(-1)} />
+                                {hasPendingRequest ? (
+                                    <Alert variant="info">You already have a pending adoption request for this animal. You cannot submit another until it is resolved.</Alert>
+                                ) : (
+                                    <AdoptionForm animal={animal} onSuccess={() => navigate(-1)} onCancel={() => navigate(-1)} />
+                                )}
                         </Card.Body>
                     </Card>
                 </Col>

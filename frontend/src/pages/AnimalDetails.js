@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Card, Spinner, Alert, Button } from 'react-bootstrap';
 import { format } from 'date-fns';
 import { getAnimalById, deleteAnimal } from '../api/services/animalService';
+import { getUserAdoptions } from '../api/services/adoptionService';
 import ConfirmationModal from '../components/common/ConfirmationModal';
 import PageTitle from '../components/common/PageTitle';
 import { RoleOnly } from '../components/access/RoleOnly';
@@ -18,6 +19,7 @@ const AnimalDetails = () => {
     const [loading, setLoading] = useState(true); // loading state for spinner
     const [error, setError] = useState(null); // error state for error messages
     const [showDeleteModal, setShowDeleteModal] = useState(false); // state to control delete confirmation
+    const [hasPendingRequest, setHasPendingRequest] = useState(false);
 
     // useEffect to fetch animal details on component mount
     useEffect(() => {
@@ -44,6 +46,31 @@ const AnimalDetails = () => {
         fetchAnimal();
     }, [id]);
 
+    // check if the current user already has a pending adoption for this animal
+    useEffect(() => {
+        const checkPending = async () => {
+
+            if (!user) {
+                setHasPendingRequest(false);
+                return;
+            }
+
+            try {
+                const adoptions = await getUserAdoptions(user.id);
+                const hasPending = adoptions.some(a => a.animalId === parseInt(id, 10) && a.status === 'Pending');
+                
+                setHasPendingRequest(hasPending);
+
+            } catch (err) {
+                setHasPendingRequest(false);
+                console.error('Failed to check user adoptions:', err);
+            }
+        };
+
+        checkPending();
+        
+    }, [user, id]);
+
     // function to handle animal deletion button click
     const handleDelete = async () => {
         try {
@@ -59,7 +86,7 @@ const AnimalDetails = () => {
 
     // function to handle adoption button click
     const handleAdopt = () => {
-        navigate(`/adoption/${id}`);
+        navigate(`/adoptions/new/${id}`);
     };
 
     // render loading spinner if data is being fetched
@@ -133,14 +160,20 @@ const AnimalDetails = () => {
                             {/* Buttons section */}
                             <div className="d-flex align-items-center gap-3">
                                 <RoleOnly allowedRoles={['guest', 'public']}>
-                                    <Button 
-                                        variant="primary" 
-                                        onClick={handleAdopt}
-                                        disabled={animal.adoptionStatus !== 'Available' || !user}
-                                    >
-                                        Adopt
-                                    </Button>
+                                    <div>
+                                        <Button 
+                                            variant="primary" 
+                                            onClick={handleAdopt}
+                                            disabled={animal.adoptionStatus !== 'Available' || !user || hasPendingRequest}
+                                        >
+                                            Adopt
+                                        </Button>
+                                    </div>
                                 </RoleOnly>
+
+                                {hasPendingRequest && (
+                                    <span className='text-info'>You have a pending adoption request for this animal.</span>
+                                )}
 
                                 <RoleOnly allowedRoles={['guest']}>
                                     <span className='text-danger'>You must be logged in to adopt an animal.</span>
