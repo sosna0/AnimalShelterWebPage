@@ -5,14 +5,24 @@ const CreateAdoption = async (req, res) => {
         userId,
         animalId,
         survey,
+        response,
         status = 'Pending'
     } = req.body;
 
     try {
+        const existing = await Adoption.findOne({
+            where: { userId, animalId, status: 'Pending' }
+        });
+
+        if (existing) {
+            return res.status(400).send({ error: 'You already have a pending adoption request for this animal' });
+        }
+
         const adoption = await Adoption.create({
             userId,
             animalId,
             survey,
+            response,
             status
         });
 
@@ -60,10 +70,6 @@ const getAdoptionsByUserId = async (req, res) => {
             where: { userId: userId }
         });
 
-        if (adoptions.length === 0) {
-            return res.status(404).send({ error: 'No adoption requests found for this user' });
-        }
-
         res.status(200).send(adoptions);
 
     } catch (error) {
@@ -92,8 +98,32 @@ const getAdoptionsByAnimalId = async (req, res) => {
     }
 }
 
+const updateAdoption = async (req, res) => {
+    const { survey } = req.body;
+    const adoptionId = req.params.id;
+
+    try {
+        const adoption = await Adoption.findByPk(adoptionId);
+
+        if (!adoption) {
+            return res.status(404).send({ error: 'Adoption request not found' });
+        }
+
+        if (adoption.status !== 'Pending') {
+            return res.status(400).send({ error: 'Can only edit pending adoption requests' });
+        }
+
+        await adoption.update({ survey });
+        res.status(200).send(adoption);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: 'Failed to update adoption request' });
+    }
+};
+
 const updateAdoptionStatus = async (req, res) => {
-    const { status } = req.body;
+    const { status, response } = req.body;
     const adoptionId = req.params.id;
 
     try {
@@ -104,6 +134,7 @@ const updateAdoptionStatus = async (req, res) => {
         }
 
         adoption.status = status;
+        adoption.response = response;
         await adoption.save();
 
         res.status(200).send(adoption);
@@ -140,6 +171,7 @@ module.exports = {
     getAdoptionById,
     getAdoptionsByUserId,
     getAdoptionsByAnimalId,
+    updateAdoption,
     updateAdoptionStatus,
     deleteAdoption
 };
