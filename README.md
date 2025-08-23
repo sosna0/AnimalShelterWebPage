@@ -14,7 +14,8 @@
 
 ## 3.Review adoption applications
 
-...
+![image](https://github.com/user-attachments/assets/7161c8b7-5c5d-4e4a-9e56-0a2395857f41)
+
 
 # Functionalities for normal user:
 
