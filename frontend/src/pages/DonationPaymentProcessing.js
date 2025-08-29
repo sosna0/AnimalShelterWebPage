@@ -17,7 +17,7 @@ const DonationPaymentProcessing = () => {
             return () => clearTimeout(timer);
         }
         if (step === "redirecting") {
-            const timer = setTimeout(() => navigate("/donate"), 2500);
+            const timer = setTimeout(() => navigate("/donations"), 2500);
             return () => clearTimeout(timer);
         }
     }, [step, navigate]);

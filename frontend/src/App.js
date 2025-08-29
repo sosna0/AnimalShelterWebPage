@@ -17,6 +17,8 @@ import UserAdoptions from './pages/UserAdoptions';
 import AdoptionNew from './pages/AdoptionNew';
 import StaffAdoptions from './pages/StaffAdoptions';
 import AdoptionDetails from './pages/AdoptionDetails';
+import UserVolunteers from './pages/UserVolunteers';
+import StaffVolunteers from './pages/StaffVolunteers';
 import { ProtectedRoute } from './components/access/ProtectedRoute';
 import { AuthProvider } from './hooks/use-auth';
 
@@ -55,9 +57,9 @@ function App() {
 						/>
 
 						{/* Donations */}
-						<Route path="/donate" element={<Donations />} />
-						<Route path="/donate/payment" element={<DonationPayment />} />
-						<Route path="/donate/payment/processing" element={<DonationPaymentProcessing />} />
+						<Route path="/donations" element={<Donations />} />
+						<Route path="/donations/payment" element={<DonationPayment />} />
+						<Route path="/donations/payment/processing" element={<DonationPaymentProcessing />} />
 
 						{/* Adoptions */}
 						<Route 
@@ -104,10 +106,26 @@ function App() {
 								}
 							/>
 							<Route 
+								path="/user-volunteers" 
+								element={
+									<ProtectedRoute allowedRoles={['public']}>
+										<UserVolunteers />
+									</ProtectedRoute>
+								}
+							/>
+							<Route 
 								path="/staff-adoptions" 
 								element={
 									<ProtectedRoute allowedRoles={['staff']}>
 										<StaffAdoptions />
+									</ProtectedRoute>
+								}
+							/>
+							<Route 
+								path="/staff-volunteers" 
+								element={
+									<ProtectedRoute allowedRoles={['staff']}>
+										<StaffVolunteers />
 									</ProtectedRoute>
 								}
 							/>

@@ -51,7 +51,7 @@ const DonationNew = () => {
 
         try {
             await createDonation(donation);
-            navigate("/donate/payment/processing")
+            navigate("/donations/payment/processing")
         } catch (error) {
             console.error("Error creating donation:", error);
             alert("There was an error creating your donation.");
@@ -70,7 +70,7 @@ const DonationNew = () => {
                 <div className="position-relative text-center mb-4">
                     <Button
                         variant="link"
-                        onClick={() => navigate('/donate')}
+                        onClick={() => navigate('/donations')}
                         className="position-absolute start-0 top-0 mt-1 ms-1 p-0"
                         aria-label="Back to donate page"
                     >
