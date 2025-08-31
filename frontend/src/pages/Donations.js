@@ -64,7 +64,7 @@ const Donations = () => {
                                 <Button
                                     variant="primary"
                                     type="submit"
-                                    className="btn btn-lg btn-primary custom-btn w-100 d-flex align-items-center justify-content-center"
+                                    className="btn btn-lg btn-dark w-100 d-flex align-items-center justify-content-center"
                                     href="/donations/payment/"
                                 >
                                     Donate now

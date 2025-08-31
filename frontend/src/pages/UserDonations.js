@@ -87,10 +87,9 @@ const UserDonations = () => {
                                     <Button
                                         variant="primary"
                                         type="submit"
-                                        className="btn btn-lg btn-primary d-flex align-items-center justify-content-center mx-auto"
+                                        className="btn btn-lg btn-dark d-flex align-items-center justify-content-center mx-auto"
                                         href="/donations"
                                         style={{
-                                            backgroundColor: "rgba(0, 0, 0, 1)",
                                             maxWidth: "75%",
                                             width: "100%",
                                         }}
