@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Card, Row, Col, Button } from 'react-bootstrap';
 import AnimalImage from './AnimalImage';
 
-const AnimalCard = ({ animal }) => {
+const AnimalCard = ({ animal, hasButton=true }) => {
     return (
         <Card className="h-100 shadow border">
             <Row className="g-0">
@@ -24,16 +24,19 @@ const AnimalCard = ({ animal }) => {
                         </div>
                         
                         {/* Buttons section - TODO: delete button and make whole card act as one*/}
-                        <div className="d-flex">
-                            <Button 
-                                as={Link} 
-                                to={`/animals/${animal.id}`} 
-                                variant="outline-primary"
-                                className="flex-grow-1"
-                            >
-                                View Details
-                            </Button>
-                        </div>
+                        {hasButton === true && (
+                            <div className="d-flex">
+                                <Button 
+                                    as={Link} 
+                                    to={`/animals/${animal.id}`} 
+                                    variant="outline-primary"
+                                    className="flex-grow-1"
+                                >
+                                    View Details
+                                </Button>
+                            </div>
+                            )
+                        }
                     </Card.Body>
                 </Col>
             </Row>
