@@ -22,6 +22,8 @@ html {
 	overflow-y: scroll;
 }
 
+
+/* nav-link */
 .nav-link,
 .nav-link.dropdown-item {
 	font-weight: 500;
@@ -42,6 +44,7 @@ html {
 	border-bottom-color: var(--onHoverColor);
 }
 
+/* nav-link for dropdown menu*/
 #navbarDropdown + .dropdown-menu .dropdown-item {
 	padding: 0.5rem 1.5rem;
 }
@@ -71,6 +74,7 @@ html {
 	color: #941009 !important;
 }
 
+/* custom container style */
 .custom-container {
 	border-radius: 10px;
 	border-width: 3px;
@@ -85,36 +89,7 @@ html {
 }
 
 
-
-.custom-btn {
-	background-color: rgba(0, 0, 0, 1);
-	border: none;
-}
-
-.custom-btn:hover {
-	background-color: #63605d;
-}
-
-.custom-btn:focus,
-.custom-btn:focus-visible {
-	background-color: #63605d;
-	box-shadow: 0 0 0 0.2rem rgba(99, 96, 93, 0.5);
-}
-
-.custom-btn:active,
-.custom-btn.active,
-.show > .custom-btn.dropdown-toggle {
-	background-color: #4b4846 !important;
-	border-color: #4b4846 !important;
-}
-
-.custom-btn:disabled,
-.custom-btn.disabled {
-	background-color: #aaa;
-	border-color: #aaa;
-	cursor: not-allowed;
-}
-
+/* navigation in profile */
 .card-header-tabs .nav-link.active {
 	background-color: rgba(242, 234, 234, 0.76) !important;
 	border-color: rgba(242, 234, 234, 0.76) !important;
@@ -129,19 +104,21 @@ html {
 	color: #63605d !important;
 }
 
+
+/* volunteer cards style */
+.volunteer-card {
+	transition: background-color 0.2s ease, transform 0.2s ease;
+	border: 1px solid #dee2e6;    
+}
   
-
-
-/* color palette */
-/* "Complementary": {
-	"50": "#fdf9f6",
-	"100": "#f8f4f1",
-	"200": "#f1edea",
-	"300": "#e3dfdb",
-	"400": "#c0bcb9",
-	"500": "#a19d9a",
-	"600": "#787471",
-	"700": "#63605d",
-	"800": "#44413e",
-	"900": "#23201e"
-} */
+.volunteer-card:hover {
+	background-color: #e7f1ff;
+	cursor: pointer;
+	transform: scale(1.01);
+}
+  
+.volunteer-card.selected {
+	border: 3px solid blue;
+	background-color: #e0f0ff;
+}
+  
