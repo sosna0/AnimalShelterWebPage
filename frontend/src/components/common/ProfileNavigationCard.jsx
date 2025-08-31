@@ -18,13 +18,19 @@ function ProfileNavigationCard() {
                             <Nav.Link as={NavLink} to="/user-adoptions">Manage Your Adoptions</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link as={NavLink} to="/user-donations">Show Your Donations</Nav.Link>
+                            <Nav.Link as={NavLink} to="/user-volunteers">Manage Your Volunteers</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link as={NavLink} to="/user-donations">View Your Donations</Nav.Link>
                         </Nav.Item>
                     </RoleOnly>
 
                     <RoleOnly allowedRoles={['staff']}>
                         <Nav.Item>
                             <Nav.Link as={NavLink} to="/staff-adoptions">Manage All Adoptions</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link as={NavLink} to="/staff-volunteers">Manage All Volunteers</Nav.Link>
                         </Nav.Item>
                     </RoleOnly>
                 

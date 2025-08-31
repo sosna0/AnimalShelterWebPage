@@ -17,6 +17,7 @@ import UserAdoptions from './pages/UserAdoptions';
 import AdoptionNew from './pages/AdoptionNew';
 import StaffAdoptions from './pages/StaffAdoptions';
 import AdoptionDetails from './pages/AdoptionDetails';
+import Volunteer from './pages/Volunteer';
 import UserVolunteers from './pages/UserVolunteers';
 import StaffVolunteers from './pages/StaffVolunteers';
 import { ProtectedRoute } from './components/access/ProtectedRoute';
@@ -78,6 +79,9 @@ function App() {
 								</ProtectedRoute>
 							}
 						/>
+
+						{/* Volunteer */}
+						<Route path="/volunteer" element={<Volunteer />} />
 
 						{/* Profile */}
 						<Route path="/" element={<ProfileNavigationCard />}>

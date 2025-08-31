@@ -60,23 +60,27 @@ const Header = () => {
                     <Nav className="ms-auto">
                         <Nav.Link as={NavLink} to="/" end>Home</Nav.Link>
                         <Nav.Link as={NavLink} to="/animals">Our Animals</Nav.Link>
-                        {/* <Nav.Link as={NavLink} to="/findanimal">Find Your Animal</Nav.Link>
-                        <Nav.Link as={NavLink} to="/volunteer">Volunteer</Nav.Link> */}
-                        <Nav.Link as={NavLink} to="/donate">Donate</Nav.Link>
+                        {/* <Nav.Link as={NavLink} to="/findanimal">Find Your Animal</Nav.Link> */}
+                        
+                        <RoleOnly allowedRoles={["public", "guest"]}>
+                            <Nav.Link as={NavLink} to="/volunteer">Volunteer</Nav.Link>
+                        </RoleOnly>
+
+                        <Nav.Link as={NavLink} to="/donations">Donations</Nav.Link>
 
                         
                         <RoleOnly allowedRoles={["public"]}>
                             <ProfileDropdown 
-                                dropdownPaths={["/user-profile", "/user-adoptions", "/user-donations"]} 
-                                dropdownDescr={["View Profile", "Manage Your Adoptions", "View Your Donations"]}
+                                dropdownPaths={["/user-profile", "/user-adoptions", "/user-volunteers", "/user-donations"]} 
+                                dropdownDescr={["View Profile", "Manage Your Adoptions", "Manage Your Volunteers", "View Your Donations"]}
                             />
                         </RoleOnly>
 
                         {/* TODO: add more options for staff only */}
                         <RoleOnly allowedRoles={["staff"]}>
                             <ProfileDropdown 
-                                dropdownPaths={["/user-profile", "/staff-adoptions"]} 
-                                dropdownDescr={["View Profile", "Manage Adoptions"]}
+                                dropdownPaths={["/user-profile", "/staff-adoptions", "/staff-volunteers"]} 
+                                dropdownDescr={["View Profile", "Manage Adoptions", "Manage Volunteers"]}
                             />
                         </RoleOnly>
                         
