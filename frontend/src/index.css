@@ -122,3 +122,15 @@ html {
 	background-color: #e0f0ff;
 }
   
+.volunteer-card.disabled {
+	opacity: 0.6;              
+	pointer-events: none;      
+	cursor: not-allowed;       
+	transition: opacity 0.2s;
+}
+  
+.volunteer-card.disabled:hover {
+	box-shadow: none;     
+	transform: none;          
+}
+  

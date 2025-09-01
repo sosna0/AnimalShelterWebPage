@@ -53,6 +53,7 @@ export const endpoints = {
         getById: (id) => `/volunteers/${id}`,
         getByUserId: (userId) => `/volunteers/user/${userId}`,
         getByAnimalId: (animalId) => `/volunteers/animal/${animalId}`,
+        filter: '/volunteers/filter',
         update: (id) => `/volunteers/${id}`,
         delete: (id) => `/volunteers/${id}`
     },
