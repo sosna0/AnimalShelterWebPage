@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const Volunteer = require('../models/volunteerModel.js');
 
 const createVolunteer = async (req, res) => {
@@ -130,12 +131,45 @@ const deleteVolunteer = async (req, res) => {
     }
 };
 
+
+const getVolunteersByFilters = async (req, res) => {
+    try {
+        const { userId, animalId, activityType, date } = req.query;
+
+        const filters = {};
+        if (userId) filters.userId = userId;
+        if (animalId) filters.animalId = animalId;
+        if (activityType) filters.activityType = activityType;
+        
+        if (date) {
+            // Pobierz cały dzień
+            filters.date = {
+                [Op.between]: [
+                    new Date(date + "T00:00:00"),
+                    new Date(date + "T23:59:59")
+                ]
+            };
+        }
+
+        const volunteers = await Volunteer.findAll({
+            where: filters
+        });
+
+        res.status(200).send(volunteers);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: 'Failed to fetch volunteers by filters' });
+    }
+};
+
+
 module.exports = {
     createVolunteer,
     getVolunteers,
     getVolunteerById,
     getVolunteersByUserId,
     getVolunteersByAnimalId,
+    getVolunteersByFilters,
     updateVolunteer,
     deleteVolunteer
 };

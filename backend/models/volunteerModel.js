@@ -21,12 +21,11 @@ const Volunteer = sequelize.define('Volunteer', {
         allowNull: false,
     },
 
-    // można zmniejszyć ilość aktywności
     activityType:{
-        type: DataTypes.ENUM('feeding', 'walking', 'grooming', 'training', 'cleaning'),
+        type: DataTypes.ENUM('walking', 'playing', 'cleaning'),
         allowNull: false,
         validate: {
-            isIn: [['feeding', 'walking', 'grooming', 'training', 'cleaning']]
+            isIn: [['walking', 'playing', 'cleaning']]
         }
     },
 
