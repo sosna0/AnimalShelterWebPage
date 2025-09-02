@@ -2,22 +2,25 @@
 
 AnimalShelterWebPage is an Express.js/React web application for managing animal shelter.
 
-## Functionalities for animal shelter staff:
+## Functionalities for animal shelter staff
 
-## 1.Manage animals
+## 1.Manage animals:
 
 ![image](https://github.com/user-attachments/assets/d3c7c178-b64f-4be2-a8eb-4d4d21600ef9)
 
-## 2.Add new animals
+## 2.Add new animals:
 
 ![image](https://github.com/user-attachments/assets/e29b80a0-8021-4975-b523-dae0aa942abc)
 
-## 3.Review adoption applications
+## 3.Review adoption applications:
 
 ![image](https://github.com/user-attachments/assets/7161c8b7-5c5d-4e4a-9e56-0a2395857f41)
 
+## 4.Watch volunteers:
 
-## Functionalities for normal user:
+![image](https://github.com/user-attachments/assets/e4632014-4205-4eda-b228-409b6319e691)
+
+## Functionalities for normal user
 
 ## 1.Search animals:
 
@@ -27,7 +30,11 @@ AnimalShelterWebPage is an Express.js/React web application for managing animal 
 
 ![image](https://github.com/user-attachments/assets/d124fc25-5633-4d32-a111-2e3d2ced7d98)
 
-## 3.Support shelter through donations:
+## 3.Submit volunteering application:
+
+![image](https://github.com/user-attachments/assets/d3981b4a-cccc-4cc1-8cc2-1688949c4534)
+
+## 4.Support shelter through donations:
 
 ![image](https://github.com/user-attachments/assets/fb1b29b2-d697-4e3e-8e6b-bff1a2fec947)
 
@@ -66,7 +73,7 @@ npm install
 npm start
 ```
 
-## 6.Open another terminal, go to the /frontend directory and repeat 4. and 5.
+## 6.Open another terminal, go to the /frontend directory and repeat 4. and 5:
 
 ```bash
 cd .../frontend
