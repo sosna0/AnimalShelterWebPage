@@ -8,7 +8,7 @@ const Home = () => {
 	const cardData = [
 		{ title: "Adopt", description: "Find your companion and give them a new home", link: "/animals" },
 		{ title: "Volunteer", description: "Make a difference in an animal's everyday life", link: "/volunteer" },
-		{ title: "Donate", description: "Support our mission to care for animals in need", link: "/donate" },
+		{ title: "Donate", description: "Support our mission to care for animals in need", link: "/donations" },
 	];
 
 	return (
