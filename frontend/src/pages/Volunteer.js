@@ -114,6 +114,9 @@ const Volunteer = () => {
             const availability = {};
             animals.forEach(a => {
                 availability[a.id] = true; // domyślnie dostępne
+                if(a.adoptionStatus === 'Adopted' || a.adoptionStatus === 'Unavailable'){
+                    availability[a.id] = false;
+                }
             });
     
             const newStart = new Date(`${date}T${time}:00`);
