@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { Container, Row, Col, Card, Button, Modal, Form, Image } from "react-bootstrap";
+import { Container, Row, Col, Card, Button, Modal, Form } from "react-bootstrap";
 import { updateUser, getUserByUsername, getUserByEmail } from "../api/services/userService";
 import { useAuth } from "../hooks/use-auth";
 import { BsPencilSquare } from "react-icons/bs";

@@ -93,7 +93,7 @@ const Volunteer = () => {
             setAnimalAvailability(initialAvailability);
     
         } catch (err) {
-            setError('Failed to fetch animals. Please try again later.');
+            setError('Failed to load animals for volunteering. Please try again later.');
             console.error('Error fetching animals:', err);
         } finally {
             setLoading(false);
@@ -120,26 +120,27 @@ const Volunteer = () => {
             const newEnd = new Date(newStart.getTime() + 60 * 60000); // 60 minut
     
             data.forEach(v => {
-                // blokujemy zwierzaka, jeśli aktywność się powtarza lub godziny się nakłądają
-                const vStart = new Date(v.date);
-                const vEnd = new Date(vStart.getTime() + 60 * 60000); // 60 minut
-            
-                if (
-                    v.activityType === selectedActivity ||
-                    (newStart >= vStart && newStart < vEnd) ||
-                    (newEnd > vStart && newEnd <= vEnd) ||
-                    (newStart <= vStart && newEnd >= vEnd)
-                ) {
-                    availability[v.animalId] = false;
+                // blokujemy zwierzaka, jeśli aktywność się powtarza lub godziny się nakładają
+                if(v.status === 'Submitted'){
+                    const vStart = new Date(v.date);
+                    const vEnd = new Date(vStart.getTime() + 60 * 60000); // 60 minut
+                
+                    if (
+                        v.activityType === selectedActivity ||
+                        (newStart >= vStart && newStart < vEnd) ||
+                        (newEnd > vStart && newEnd <= vEnd) ||
+                        (newStart <= vStart && newEnd >= vEnd)
+                    ) {
+                        availability[v.animalId] = false;
+                    }
                 }
             }); 
     
             setAnimalAvailability(availability);
-    
-            await minDelay; // zapewniamy, że loader wyświetli się min. 2 sekundy
+            await minDelay;
         } catch (err) {
             console.error(err);
-            await minDelay; // również w przypadku błędu
+            await minDelay;
         } finally {
             setLoadingAnimals(false);
         }

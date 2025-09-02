@@ -3,23 +3,30 @@ import Layout from './components/common/Layout';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
+
 import Animals from './pages/Animals';
 import AnimalDetails from './pages/AnimalDetails';
 import AnimalNew from './pages/AnimalNew';
 import AnimalEdit from './pages/AnimalEdit';
+
 import Donations from './pages/Donations';
 import DonationPayment from './pages/DonationPayment';
 import DonationPaymentProcessing from './pages/DonationPaymentProcessing';
-import ProfileNavigationCard from './components/common/ProfileNavigationCard';
 import UserDonations from './pages/UserDonations';
-import UserProfile from './pages/UserProfile';
-import UserAdoptions from './pages/UserAdoptions';
+
 import AdoptionNew from './pages/AdoptionNew';
-import StaffAdoptions from './pages/StaffAdoptions';
 import AdoptionDetails from './pages/AdoptionDetails';
+import UserAdoptions from './pages/UserAdoptions';
+import StaffAdoptions from './pages/StaffAdoptions';
+
 import Volunteer from './pages/Volunteer';
+import VolunteerDetails from './pages/VolunteerDetails';
 import UserVolunteers from './pages/UserVolunteers';
 import StaffVolunteers from './pages/StaffVolunteers';
+
+import ProfileNavigationCard from './components/common/ProfileNavigationCard';
+import UserProfile from './pages/UserProfile';
+
 import { ProtectedRoute } from './components/access/ProtectedRoute';
 import { AuthProvider } from './hooks/use-auth';
 
@@ -82,6 +89,7 @@ function App() {
 
 						{/* Volunteer */}
 						<Route path="/volunteer" element={<Volunteer />} />
+						<Route path="/volunteers/:id" element={<VolunteerDetails />} />						
 
 						{/* Profile */}
 						<Route path="/" element={<ProfileNavigationCard />}>

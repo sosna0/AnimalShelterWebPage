@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Spinner, Alert, Button, Image } from 'react-bootstrap';
+import { Container, Row, Col, Spinner, Alert, Button } from 'react-bootstrap';
 import DonationCard from "../components/donations/DonationCard";
 import { getDonationsByUserId } from "../api/services/donationService";
 import { FaExternalLinkAlt } from "react-icons/fa";
