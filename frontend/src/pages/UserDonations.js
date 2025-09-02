@@ -40,6 +40,7 @@ const UserDonations = () => {
                             maxHeight: "auto", maxWidth: "1000px",
                         }}
                     >
+                        <h1 className="text-center mb-4 mt-4">Your Donations</h1>
                         {loading ? (
                             <Container className="text-center mt-5">
                                 <Spinner animation="border" role="status">
@@ -52,7 +53,6 @@ const UserDonations = () => {
                             </Container>
                         ) : donations.length > 0 ? (
                             <>
-                                <h1 className="text-center mb-4 mt-4">Your Donations</h1>
                                 <Container 
                                     style={{
                                         paddingLeft: '20px',
@@ -75,13 +75,13 @@ const UserDonations = () => {
                             <Container 
                                 style={{
                                     paddingLeft: '30px', paddingRight: '30px', 
-                                    marginBottom: '25px', marginTop: '25px'
+                                    marginBottom: '25px'
                                 }} 
                                 className="py-4"
                             >                                    
-                                <h1 className="display-6 text-center fw-bold mt-3">
+                                <h3 className=" text-center fw-bold mt-3">
                                     Make your first donation
-                                </h1>
+                                </h3>
 
                                 <div className="text-center mt-4">
                                     <Button
@@ -90,7 +90,7 @@ const UserDonations = () => {
                                         className="btn btn-lg btn-dark d-flex align-items-center justify-content-center mx-auto"
                                         href="/donations"
                                         style={{
-                                            maxWidth: "75%",
+                                            maxWidth: "400px",
                                             width: "100%",
                                         }}
                                     >
@@ -100,13 +100,6 @@ const UserDonations = () => {
                                 </div>
                             </Container>
                         )}
-                        
-                        <Image
-                            src="/images/dog1.svg"
-                            alt="Dog Illustration"
-                            className="img-fluid"
-                            style={{ maxHeight: '300px', width: '100%' }}
-                        />
 
                     </Container> 
                 </Col>

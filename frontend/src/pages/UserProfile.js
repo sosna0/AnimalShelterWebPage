@@ -80,6 +80,8 @@ const UserProfile = () => {
         <Container className="my-4 container-fluid">
             <Row className="justify-content-center">
                 <Col xs={10} md={9} lg={7} className="custom-container">
+                    <h1 className="text-center mb-4 mt-4">Your Profile</h1>
+
                     {fields.map((field) => (
                         <Card className="my-4" key={field.key}>
                             <Card.Body className="d-flex align-items-center justify-content-between text-start">
@@ -100,12 +102,6 @@ const UserProfile = () => {
                             </Card.Body>
                         </Card>
                     ))}
-                    <Image
-                        src="/images/cat4.svg"
-                        alt="Dog Illustration"
-                        className="img-fluid"
-                        style={{ maxHeight: '300px', width: '100%' }}
-                    />
                 </Col>
             </Row>
 
