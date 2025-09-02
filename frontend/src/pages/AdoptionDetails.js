@@ -145,12 +145,14 @@ const AdoptionDetails = () => {
                             </div>
                         </div>
                         <RoleOnly allowedRoles={['public']}>
-                            <Button
-                                variant="outline-danger"
-                                onClick={() => setShowDeleteModal(true)}
-                            >
-                                Cancel Request
-                            </Button>
+                            {adoption.status === 'Pending' && (
+                                <Button
+                                    variant="outline-primary"
+                                    onClick={() => setShowStatusModal(true)}
+                                >
+                                    Cancel Request
+                                </Button>
+                            )}
                         </RoleOnly>
                     </div>
 
