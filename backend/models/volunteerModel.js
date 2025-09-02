@@ -52,7 +52,15 @@ const Volunteer = sequelize.define('Volunteer', {
             len: [0, 1000]
         }
     },
-    
+
+    status:{
+        type: DataTypes.ENUM('Submitted', 'Canceled'),
+        allowNull: false,
+        defaultValue: 'Submitted',
+        validate: {
+            isIn: [['Submitted', 'Canceled']]
+        }
+    },        
 
 });
 

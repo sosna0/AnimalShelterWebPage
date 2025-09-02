@@ -101,17 +101,19 @@ const updateVolunteer = async (req, res) => {
         const volunteer = await Volunteer.findByPk(req.params.id);
 
         if (!volunteer) {
-            return res.status(404).send({ error: 'volunteer not found' });
+            return res.status(404).json({ error: 'Volunteer not found' });
         }
-        const updatedVolunteer = await volunteer.update(req.body);
 
-        res.status(200).send(updatedVolunteer);
+        const { id, createdAt, updatedAt, ...fieldsToUpdate } = req.body;
+        const updatedVolunteer = await volunteer.update(fieldsToUpdate);
 
+        res.status(200).json(updatedVolunteer);
     } catch (error) {
         console.error(error);
-        res.status(500).send({ error: 'Failed to update volunteer' });
+        res.status(500).json({ error: 'Failed to update volunteer' });
     }
 };
+
 
 const deleteVolunteer = async (req, res) => {
     try {
