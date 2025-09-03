@@ -1,7 +1,9 @@
 const Animal = require('../models/animalModel');
 const User = require('../models/userModel');
+const Donation = require('../models/donationModel');
 const animals = require('./presets/animalPreset');
 const users = require('./presets/userPreset');
+const donations = require('./presets/donationPreset');
 
 // NOTES:
 /*
@@ -40,6 +42,21 @@ async function seedDatabase(sequelize) {
 
             if (!existingUser) {
                 await User.create(user, { transaction: t });
+            }
+        }
+
+        for (const donation of donations) {
+            const existingDonation = await Donation.findOne({
+                where: {
+                    userId: donation.userId,
+                    amount: donation.amount,
+                    message: donation.message
+                },
+                transaction: t
+            });
+
+            if (!existingDonation) {
+                await Donation.create(donation, { transaction: t });
             }
         }
 
