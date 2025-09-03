@@ -17,7 +17,7 @@ const Home = () => {
 			<section
 				className="text-white mb-5 d-flex align-items-center justify-content-center"
 				style={{
-					background: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("/images/hero-background.jpg")',
+					background: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/images/hero-background.jpg")',
 					backgroundSize: 'cover',
 					backgroundPosition: 'center',
 					minHeight: '80vh'
